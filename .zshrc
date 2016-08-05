@@ -24,16 +24,19 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Docker
 alias dc='docker-compose'
 alias up='docker-compose up'
-alias drun='docker-compose run'
+alias drun='docker-compose run --rm --service-ports'
+alias dexec='docker-compose exec'
 alias d='docker'
 alias dstop='docker stop'
 alias dstop-all='docker stop `docker ps -q`'
 alias docker-kill='docker rm -f `docker ps -qa`'
 alias docker-destroy='docker rmi -f `docker images -q`'
+alias client-test='drun client npm run test:watch'
+alias crun='drun client npm run'
+alias brun='drun bff npm run'
 
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-
+powerline-daemon -q
 . /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 . /usr/lib/z.sh
+
+source /usr/share/nvm/init-nvm.sh

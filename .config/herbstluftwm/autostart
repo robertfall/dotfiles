@@ -26,6 +26,7 @@ hc keybind $Mod-Shift-r chain . reload . detect_monitors
 hc keybind $Mod-Shift-c close
 hc keybind $Mod-Return spawn urxvt
 hc keybind $Mod-Shift-Return spawn emacs &
+hc keybind $Mod-Control-Return spawn chromium &
 
 # basic movement
 # focusing clients
@@ -89,7 +90,7 @@ hc keybind $Mod-p pseudotile toggle
 # I.e. if there are two windows within a frame, the grid layout is skipped.
 hc keybind $Mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
-                     . cycle_layout +1 vertical horizontal max vertical grid    \
+            . cycle_layout +1 vertical horizontal max grid    \
                , cycle_layout +1
 
 # mouse

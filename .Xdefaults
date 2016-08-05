@@ -1,6 +1,4 @@
 xterm*selectToClipboard: true
-XTerm*faceName: Source Code Pro for Powerline
-XTerm*faceSize: 10
 URxvt.font: xft:Source Code Pro for Powerline:size=10
 
 *foreground:   #eceff1
