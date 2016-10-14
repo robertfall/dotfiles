@@ -1,5 +1,8 @@
 #!/bin/sh
 
+VBoxClient --display
+VBoxClient --clipboard
+
 xrdb -merge $HOME/.Xdefaults
 
 # start some nice programs
@@ -12,6 +15,5 @@ fi
 
 feh --bg-scale /home/roberthe/images/background.png
 eval $(ssh-agent)
-compton &
 powerline-daemon
 exec herbstluftwm

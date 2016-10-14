@@ -1,5 +1,5 @@
 xterm*selectToClipboard: true
-URxvt.font: xft:Source Code Pro for Powerline:size=10
+URxvt.font: xft:Source\ Code\ Pro\ for\ Powerline:size=10
 
 *foreground:   #eceff1
 *background:   #263238
@@ -47,6 +47,6 @@ urxvt*highlightSelection: true
 URxvt*depth: 32
 URxvt*background: rgba:0000/0000/1111/dddd
 
-dzen2.font:       -*-fixed-*-*-*-*-*-*-*-*-*-*-*-*
+dzen2.font:       -*-liberation sans-medium-r-*-*-22-*-*-*-*-*-*-*
 dzen2.foreground: #eceff1
 dzen2.background: #263238
