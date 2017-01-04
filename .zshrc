@@ -40,3 +40,5 @@ powerline-daemon -q
 . /usr/lib/z.sh
 
 source /usr/share/nvm/init-nvm.sh
+
+eval $(ssh-agent)

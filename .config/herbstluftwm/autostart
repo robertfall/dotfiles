@@ -2,6 +2,9 @@
 
 # this is a simple config for herbstluftwm
 
+VBoxClient --display
+VBoxClient --clipboard
+
 hc() {
     herbstclient "$@"
 }
@@ -155,3 +158,6 @@ for monitor in $(herbstclient list_monitors | cut -d: -f1) ; do
     # start it on each monitor
     "$panel" $monitor &
 done
+
+feh --bg-scale /home/roberthe/images/background.png
+powerline-daemon
