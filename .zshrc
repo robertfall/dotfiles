@@ -1,44 +1,75 @@
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+# Basic
+autoload -U compinit && compinit
+autoload -Uz vcs_info
+precmd() { vcs_info }
 
-setopt appendhistory autocd extendedglob nomatch notify
-unsetopt beep
-bindkey -v
-bindkey '^R' history-incremental-search-backward
+# ASDF
+. /opt/homebrew/opt/asdf/libexec/asdf.sh 
 
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '/home/roberthe/.zshrc'
+# ZSH Setup
+. ~/.zsh/plugins/antigen.zsh
+antigen bundle agkozak/zsh-z
+antigen bundle reegnz/jq-zsh-plugin
+#bindkey '^j' jq-complete
+antigen apply
 
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
+autoload edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
-alias ls='ls --color=auto'
-alias hc='herbstclient'
-alias pdf='hc spawn apvlv'
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats '(%b%u%c)'
+ 
+# Set up the prompt (with git branch name)
+setopt PROMPT_SUBST
+PROMPT='%F{blue}%~%f %F{green}${vcs_info_msg_0_}%f %F{red}$%f '
 
-# Docker
-alias dc='docker-compose'
-alias up='docker-compose up'
-alias drun='docker-compose run --rm --service-ports'
-alias dexec='docker-compose exec'
-alias d='docker'
-alias dstop='docker stop'
-alias dstop-all='docker stop `docker ps -q`'
-alias docker-kill='docker rm -f `docker ps -qa`'
-alias docker-destroy='docker rmi -f `docker images -q`'
-alias client-test='drun client npm run test:watch'
-alias crun='drun client npm run'
-alias brun='drun bff npm run'
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-powerline-daemon -q
-. /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
-. /usr/lib/z.sh
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
-source /usr/share/nvm/init-nvm.sh
+complete -o nospace -C /opt/homebrew/Cellar/tfenv/3.0.0/versions/1.2.6/terraform terraform
 
-eval $(ssh-agent)
+export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+gch() {
+
+ [[ -n "$1" ]] && params+=(--query $1)
+
+ branchname="$(git branch | fzf ${params[@]})"
+ return_code="$?"
+
+ if [ "$return_code" -ne 0 ]; then
+  return "$return_code"
+ fi
+
+ branchname=$(echo $branchname | tr -d '*[:space:]')
+ [[ $? -eq 0 ]] && git checkout $branchname
+}
+#compdef gt
+###-begin-gt-completions-###
+#
+# yargs command completion script
+#
+# Installation: /opt/homebrew/bin/gt completion >> ~/.zshrc
+#    or /opt/homebrew/bin/gt completion >> ~/.zprofile on OSX.
+#
+_gt_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /opt/homebrew/bin/gt --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _gt_yargs_completions gt
+###-end-gt-completions-###
+
+export PERCY_TOKEN=web_ac74fd2c62f4848bd4c47ec7eee30a088c7b78f9f3c379996d2b603e50795c68
+
+eval "$(atuin init zsh)"

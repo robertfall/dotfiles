@@ -1,14 +1,6 @@
-[push]
-	default = simple
 [alias]
-	st = status
-	df = diff
-	co = checkout
-	ci = commit
-	br = branch
 	hist = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-	lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 
 [user]
 	name = Robert Herbst
-	email = robert.herbst@allangray.co.za
+	email = rob@robertfall.com
