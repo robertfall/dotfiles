@@ -1,10 +1,26 @@
 # Basic
 autoload -U compinit && compinit
 autoload -Uz vcs_info
-precmd() { vcs_info }
 
-# ASDF
-. /opt/homebrew/opt/asdf/libexec/asdf.sh 
+# Command timing
+preexec() {
+  cmd_start_time=$SECONDS
+}
+
+precmd() {
+  vcs_info
+  # Show timestamp when command finishes
+  if [[ -n $cmd_start_time ]]; then
+    local end_time=$SECONDS
+    local elapsed=$((end_time - cmd_start_time))
+    local timestamp=$(date '+%H:%M:%S')
+    echo -e "\033[90m[${timestamp}] (${elapsed}s)\033[0m"
+    unset cmd_start_time
+  fi
+}
+
+# Mise
+eval "$(~/.local/bin/mise activate zsh)"
 
 # ZSH Setup
 . ~/.zsh/plugins/antigen.zsh
@@ -22,6 +38,17 @@ zstyle ':vcs_info:git:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr '*'
 zstyle ':vcs_info:*' stagedstr '+'
 zstyle ':vcs_info:git:*' formats '(%b%u%c)'
+
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+set -o emacs
+
+#alias op="op.exe"
+eval "$(op completion zsh)"; compdef _op op.exe
+
+alias cursor="/mnt/c/Users/Robert\ Herbst/AppData/Local/Programs/cursor/resources/app/bin/cursor"
+
+alias inject_secrets=". ~/.secrets"
  
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
@@ -33,8 +60,6 @@ autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 complete -o nospace -C /opt/homebrew/Cellar/tfenv/3.0.0/versions/1.2.6/terraform terraform
-
-export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
 gch() {
 
@@ -70,6 +95,30 @@ _gt_yargs_completions()
 compdef _gt_yargs_completions gt
 ###-end-gt-completions-###
 
-export PERCY_TOKEN=web_ac74fd2c62f4848bd4c47ec7eee30a088c7b78f9f3c379996d2b603e50795c68
 
 eval "$(atuin init zsh)"
+
+# pnpm
+export PNPM_HOME="/home/rob/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+. "$HOME/.atuin/bin/env"
+. "$HOME/.config/wezterm/shell-integration.sh"
+
+ulimit -S -n 65536
+
+# Open new tabs in same directory
+keep_current_path() {
+  printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
+}
+precmd_functions+=(keep_current_path)
+
+# added by Snowflake SnowSQL installer
+export PATH=/home/rob/bin:$PATH
+
+# DuckDB 
+export PATH='/home/rob/.duckdb/cli/latest':$PATH
