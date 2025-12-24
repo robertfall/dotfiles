@@ -57,9 +57,12 @@ PROMPT='%F{blue}%~%f %F{green}${vcs_info_msg_0_}%f %F{red}$%f '
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 autoload -U +X bashcompinit && bashcompinit
+<<<<<<< HEAD
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 
 complete -o nospace -C /opt/homebrew/Cellar/tfenv/3.0.0/versions/1.2.6/terraform terraform
+=======
+>>>>>>> ec16113 (Split .zshrc into OS specific files)
 
 gch() {
 
@@ -95,6 +98,7 @@ _gt_yargs_completions()
 compdef _gt_yargs_completions gt
 ###-end-gt-completions-###
 
+<<<<<<< HEAD
 
 eval "$(atuin init zsh)"
 
@@ -122,3 +126,9 @@ export PATH=/home/rob/bin:$PATH
 
 # DuckDB 
 export PATH='/home/rob/.duckdb/cli/latest':$PATH
+=======
+eval "$(atuin init zsh)"
+
+# MacOS Only
+[[ "$OSTYPE" == darwin* ]] && . ~/.zshrc.macos
+>>>>>>> ec16113 (Split .zshrc into OS specific files)
