@@ -3,7 +3,5 @@
 [user]
 	name = Robert Herbst
 	email = rob@robertfall.com
-[core]
-	sshCommand = ssh.exe
 [init]
 	defaultBranch = main
