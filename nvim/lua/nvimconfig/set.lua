@@ -27,5 +27,11 @@ vim.opt.smartcase =true
 
 vim.opt.termguicolors = true
 
+-- Auto-reload files changed outside of nvim
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({"FocusGained", "BufEnter"}, {
+  command = "checktime"
+})
+
 -- No automatic comment insertion
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])

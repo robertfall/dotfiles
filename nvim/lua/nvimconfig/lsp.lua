@@ -32,5 +32,12 @@ vim.lsp.config('rust_analyzer', {
   root_markers = { 'Cargo.toml', '.git' },
 })
 
+vim.lsp.config('vtsls', {
+  cmd = { 'vtsls', '--stdio' },
+  filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+  root_markers = { 'tsconfig.json', 'package.json', '.git' },
+})
+
 vim.lsp.enable('ruby_lsp')
 vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('vtsls')
