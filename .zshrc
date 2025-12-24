@@ -64,7 +64,6 @@ gch() {
  [[ $? -eq 0 ]] && git checkout $branchname
 }
 
-. "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
 ulimit -S -n 65536

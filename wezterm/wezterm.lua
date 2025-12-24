@@ -1,7 +1,10 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
-config.default_domain = 'WSL:Ticketsolve'
+-- Only set WSL domain on Windows
+if wezterm.target_triple:find("windows") then
+  config.default_domain = 'WSL:Ticketsolve'
+end
 config.color_scheme = 'nord'
 config.font = wezterm.font 'Fira Code'
 config.font_size = 12.0
