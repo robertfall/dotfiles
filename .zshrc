@@ -77,5 +77,3 @@ export PATH="$HOME/.duckdb/cli/latest:$PATH"
 # OS-specific config
 [[ "$OSTYPE" == darwin* ]] && . ~/.zshrc.macos
 [[ "$OSTYPE" == linux* ]] && . ~/.zshrc.wsl
-
-eval "$(/home/rob/.local/bin/mise activate zsh)" # added by https://mise.run/zsh
