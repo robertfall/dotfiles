@@ -16,6 +16,7 @@ return {
 				ensure_installed = {
 					"javascript",
 					"typescript",
+					"tsx",
 					"ruby",
 					"rust",
 					-- The five parsers below should always be installed
