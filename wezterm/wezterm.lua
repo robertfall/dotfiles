@@ -1,10 +1,7 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
--- Only set WSL domain on Windows
-if wezterm.target_triple:find("windows") then
-  config.default_domain = 'WSL:Ticketsolve'
-end
+config.default_domain = 'WSL:Ticketsolve'
 config.color_scheme = 'nord'
 config.font = wezterm.font 'Fira Code'
 config.font_size = 12.0
@@ -13,10 +10,17 @@ config.term = "xterm-256color"
 config.front_end = "OpenGL"
 
 config.window_decorations = 'RESIZE'
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
+}
+config.use_resize_increments = true
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 
-config.hide_tab_bar_if_only_one_tab = false
+config.hide_tab_bar_if_only_one_tab = true
 
 wezterm.on('format-window-title', function(tab) 
   local pane = tab.active_pane
@@ -44,6 +48,7 @@ end)
 config.leader = { key = 'l', mods = 'CTRL', timeout_milliseconds = 1000 }
 
 config.keys = {
+  {key="Enter", mods="SHIFT", action=wezterm.action{SendString="\x1b\r"}},
   {
     key = 's',
     mods = 'LEADER|CTRL',
