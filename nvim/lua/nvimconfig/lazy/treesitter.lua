@@ -19,6 +19,9 @@ return {
 					"tsx",
 					"ruby",
 					"rust",
+					"markdown",
+					"markdown_inline",
+					"diff",
 					-- The five parsers below should always be installed
 					"lua",
 					"vim",
@@ -27,6 +30,9 @@ return {
 					"query"
 				},
 			})
+
+			-- Enable syntax highlighting for octo buffers
+			vim.treesitter.language.register('markdown', 'octo')
 		end,
 	}
 }

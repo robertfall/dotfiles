@@ -28,3 +28,6 @@ precmd_functions+=(keep_current_path)
 
 # Git SSH for Windows
 export GIT_SSH_COMMAND=ssh.exe
+
+# opencode
+export PATH=/home/rob/.opencode/bin:$PATH
