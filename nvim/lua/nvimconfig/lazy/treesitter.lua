@@ -33,6 +33,9 @@ return {
 
 			-- Enable syntax highlighting for octo buffers
 			vim.treesitter.language.register('markdown', 'octo')
+
+			-- Treat RBI (Sorbet) files as Ruby
+			vim.treesitter.language.register('ruby', 'rbi')
 		end,
 	}
 }
