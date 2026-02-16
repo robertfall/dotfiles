@@ -1,7 +1,16 @@
 local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
-config.default_domain = 'WSL:Ticketsolve'
+-- Use WSL domain only when available on Windows hosts.
+if wezterm.target_triple:find("windows") then
+  local wanted_wsl_domain = 'WSL:Ticketsolve'
+  for _, domain in ipairs(wezterm.default_wsl_domains()) do
+    if domain.name == wanted_wsl_domain then
+      config.default_domain = wanted_wsl_domain
+      break
+    end
+  end
+end
 config.color_scheme = 'nord'
 config.font = wezterm.font 'Fira Code'
 config.font_size = 12.0
@@ -11,10 +20,10 @@ config.front_end = "OpenGL"
 
 config.window_decorations = 'RESIZE'
 config.window_padding = {
-  left = 0,
-  right = 0,
-  top = 0,
-  bottom = 0,
+  left = '10px',
+  right = '10px',
+  top = '10px',
+  bottom = '10px',
 }
 config.use_resize_increments = true
 config.use_fancy_tab_bar = false
