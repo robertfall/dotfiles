@@ -1,3 +1,15 @@
+# Mise
+eval "$(/opt/homebrew/bin/mise activate zsh)"
+
+# ZSH plugins
+. /opt/homebrew/share/antigen/antigen.zsh
+antigen bundle agkozak/zsh-z
+antigen bundle reegnz/jq-zsh-plugin
+antigen apply
+
+# Atuin env
+. "$HOME/.atuin/bin/env"
+
 # Terraform completions
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
 complete -o nospace -C /opt/homebrew/Cellar/tfenv/3.0.0/versions/1.2.6/terraform terraform

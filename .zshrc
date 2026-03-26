@@ -22,8 +22,6 @@ precmd() {
   (( ${+functions[__wezterm_semantic_precmd]} )) || print -n '\e]133;A\e\\'
 }
 
-# Mise
-eval "$(~/.local/bin/mise activate zsh)"
 
 # ZSH plugins via zinit. Self-bootstraps on first run.
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -74,7 +72,6 @@ gch() {
 }
 
 [ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh)"
 
 ulimit -S -n 65536
 
@@ -98,6 +95,8 @@ fi
 # enters copy mode and `prefix [` keeps working. Otherwise Claude's TUI
 # grabs DECSET 1000 and tmux stops seeing mouse events.
 export CLAUDE_CODE_DISABLE_MOUSE=1
+
+eval "$(atuin init zsh)"
 
 # Auto-start tmux for interactive shells, but never nest.
 # Set NO_TMUX=1 to bypass for a single shell session.
