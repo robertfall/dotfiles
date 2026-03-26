@@ -41,6 +41,7 @@ zstyle ':vcs_info:git:*' formats '(%b%u%c)'
 set -o emacs
 
 alias inject_secrets=". ~/.secrets"
+alias tmux-keep='tmux set destroy-unattached off'
 
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
@@ -77,3 +78,9 @@ export PATH="$HOME/.duckdb/cli/latest:$PATH"
 # OS-specific config
 [[ "$OSTYPE" == darwin* ]] && . ~/.zshrc.macos
 [[ "$OSTYPE" == linux* ]] && . ~/.zshrc.wsl
+
+# Auto-start tmux for interactive shells, but never nest.
+# Set NO_TMUX=1 to bypass for a single shell session.
+if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -z "$NO_TMUX" ]] && command -v tmux >/dev/null 2>&1; then
+  exec tmux new-session \; set-option destroy-unattached on
+fi
