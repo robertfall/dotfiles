@@ -81,6 +81,6 @@ export PATH="$HOME/.duckdb/cli/latest:$PATH"
 
 # Auto-start tmux for interactive shells, but never nest.
 # Set NO_TMUX=1 to bypass for a single shell session.
-if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -z "$NO_TMUX" ]] && command -v tmux >/dev/null 2>&1; then
+if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -z "$NO_TMUX" ]] && [[ -z "$SSH_CONNECTION" ]] && command -v tmux >/dev/null 2>&1; then
   exec tmux new-session \; set-option destroy-unattached on
 fi
