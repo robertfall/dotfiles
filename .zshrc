@@ -84,3 +84,6 @@ export PATH="$HOME/.duckdb/cli/latest:$PATH"
 if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -z "$NO_TMUX" ]] && [[ -z "$SSH_CONNECTION" ]] && command -v tmux >/dev/null 2>&1; then
   exec tmux new-session \; set-option destroy-unattached on
 fi
+
+# Cortex CLI completion (disable via /settings in cortex)
+[[ -s ~/.zsh/completions/cortex.zsh ]] && source ~/.zsh/completions/cortex.zsh
