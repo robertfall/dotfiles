@@ -21,3 +21,6 @@ esac
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
+
+# Podman (point docker CLI / compose plugin at the rootless podman socket)
+export DOCKER_HOST="unix://${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/podman/podman.sock"
