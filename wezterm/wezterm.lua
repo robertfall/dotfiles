@@ -12,20 +12,24 @@ if wezterm.target_triple:find("windows") then
   end
 end
 config.color_scheme = 'nord'
-config.font = wezterm.font 'Fira Code'
+config.font = wezterm.font 'FiraCode Nerd Font Mono'
 config.font_size = 12.0
 
 config.term = "xterm-256color"
 config.front_end = "OpenGL"
 
-config.window_decorations = 'RESIZE'
+if wezterm.target_triple:find('linux') then
+  config.window_decorations = 'NONE'
+else
+  config.window_decorations = 'RESIZE'
+end
 config.window_padding = {
-  left = '10px',
-  right = '10px',
-  top = '10px',
-  bottom = '10px',
+  left = '30px',
+  right = '30px',
+  top = '30px',
+  bottom = '30px',
 }
-config.use_resize_increments = true
+config.use_resize_increments = false
 config.use_fancy_tab_bar = false
 config.tab_bar_at_bottom = true
 
