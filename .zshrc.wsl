@@ -1,26 +1,12 @@
-# Atuin env
-. "$HOME/.atuin/bin/env"
+# WSL-only overlay. Loaded on top of .zshrc.linux when $WSL_DISTRO_NAME is set.
 
-# Neovim
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-
-# 1Password CLI (Windows)
-eval "$(op completion zsh)"; compdef _op op.exe
+# 1Password CLI (Windows binary via WSL)
+compdef _op op.exe
 
 # Cursor
 alias cursor="/mnt/c/Users/Robert\ Herbst/AppData/Local/Programs/cursor/resources/app/bin/cursor"
 
-# pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# Wezterm shell integration
-. "$HOME/.config/wezterm/shell-integration.sh"
-
-# Open new tabs in same directory
+# Open new WezTerm tabs in same directory (uses wslpath to translate to Windows path)
 keep_current_path() {
   printf "\e]9;9;%s\e\\" "$(wslpath -w "$PWD")"
 }
@@ -28,6 +14,3 @@ precmd_functions+=(keep_current_path)
 
 # Git SSH for Windows
 export GIT_SSH_COMMAND=ssh.exe
-
-# opencode
-export PATH=/home/rob/.opencode/bin:$PATH

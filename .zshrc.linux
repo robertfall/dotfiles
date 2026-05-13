@@ -1,0 +1,23 @@
+# Linux overlay. Loaded for any Linux host (native Fedora, WSL, etc.).
+# WSL-only additions live in ~/.zshrc.wsl and load on top of this.
+# Note: atuin's env file is sourced from ~/.zshrc just before `atuin init` —
+# that runs earlier than this overlay, so don't move it here.
+
+# Neovim
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+
+# 1Password CLI
+eval "$(op completion zsh)"
+
+# pnpm
+export PNPM_HOME="$HOME/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Wezterm shell integration
+. "$HOME/.config/wezterm/shell-integration.sh"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"

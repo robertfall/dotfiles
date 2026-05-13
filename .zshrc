@@ -22,11 +22,16 @@ precmd() {
 # Mise
 eval "$(~/.local/bin/mise activate zsh)"
 
-# ZSH Setup
-. ~/.zsh/plugins/antigen.zsh
-antigen bundle agkozak/zsh-z
-antigen bundle reegnz/jq-zsh-plugin
-antigen apply
+# ZSH plugins via zinit. Self-bootstraps on first run.
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [ ! -d "$ZINIT_HOME/.git" ]; then
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+source "$ZINIT_HOME/zinit.zsh"
+
+zinit light agkozak/zsh-z
+zinit light reegnz/jq-zsh-plugin
 
 autoload edit-command-line
 zle -N edit-command-line
@@ -65,6 +70,7 @@ gch() {
  [[ $? -eq 0 ]] && git checkout $branchname
 }
 
+[ -f "$HOME/.atuin/bin/env" ] && . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
 ulimit -S -n 65536
@@ -77,7 +83,10 @@ export PATH="$HOME/.duckdb/cli/latest:$PATH"
 
 # OS-specific config
 [[ "$OSTYPE" == darwin* ]] && . ~/.zshrc.macos
-[[ "$OSTYPE" == linux* ]] && . ~/.zshrc.wsl
+if [[ "$OSTYPE" == linux* ]]; then
+  . ~/.zshrc.linux
+  [[ -n "$WSL_DISTRO_NAME" ]] && . ~/.zshrc.wsl
+fi
 
 # Auto-start tmux for interactive shells, but never nest.
 # Set NO_TMUX=1 to bypass for a single shell session.
