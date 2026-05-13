@@ -16,8 +16,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
-# Wezterm shell integration
-. "$HOME/.config/wezterm/shell-integration.sh"
+# Wezterm shell integration (optional — fetched from upstream)
+[ -f "$HOME/.config/wezterm/shell-integration.sh" ] && . "$HOME/.config/wezterm/shell-integration.sh"
 
 # opencode
 export PATH="$HOME/.opencode/bin:$PATH"
