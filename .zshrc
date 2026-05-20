@@ -1,3 +1,6 @@
+# Welcome message
+echo "👋 Welcome back, Robert! $(date '+%A, %B %d %Y • %H:%M')"
+
 # Basic
 autoload -U compinit && compinit
 autoload -Uz vcs_info
@@ -96,3 +99,5 @@ fi
 
 # Cortex CLI completion (disable via /settings in cortex)
 [[ -s ~/.zsh/completions/cortex.zsh ]] && source ~/.zsh/completions/cortex.zsh
+export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
