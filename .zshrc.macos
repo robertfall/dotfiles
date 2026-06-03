@@ -8,6 +8,7 @@ eval "$(op completion zsh)"
 
 # MySQL
 export PATH="/opt/homebrew/opt/mysql@8.0/bin:$PATH"
+export PATH="$HOME/.local/share/safegh/safe-bin:$PATH"
 
 # gt completions
 _gt_yargs_completions()
@@ -20,3 +21,4 @@ _gt_yargs_completions()
   _describe 'values' reply
 }
 compdef _gt_yargs_completions gt
+
