@@ -91,6 +91,11 @@ if [[ "$OSTYPE" == linux* ]]; then
   [[ -n "$WSL_DISTRO_NAME" ]] && . ~/.zshrc.wsl
 fi
 
+# Let tmux own mouse-tracking (see .tmux.conf `mouse on`) so wheel scroll
+# enters copy mode and `prefix [` keeps working. Otherwise Claude's TUI
+# grabs DECSET 1000 and tmux stops seeing mouse events.
+export CLAUDE_CODE_DISABLE_MOUSE=1
+
 # Auto-start tmux for interactive shells, but never nest.
 # Set NO_TMUX=1 to bypass for a single shell session.
 if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -z "$NO_TMUX" ]] && [[ -z "$SSH_CONNECTION" ]] && command -v tmux >/dev/null 2>&1; then
