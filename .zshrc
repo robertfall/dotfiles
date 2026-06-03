@@ -84,6 +84,9 @@ export PATH=$HOME/bin:$PATH
 # DuckDB
 export PATH="$HOME/.duckdb/cli/latest:$PATH"
 
+export EDITOR=nvim
+export VISUAL=nvim
+
 # OS-specific config
 [[ "$OSTYPE" == darwin* ]] && . ~/.zshrc.macos
 if [[ "$OSTYPE" == linux* ]]; then
@@ -106,3 +109,7 @@ fi
 [[ -s ~/.zsh/completions/cortex.zsh ]] && source ~/.zsh/completions/cortex.zsh
 export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+# sleuth — base directory for fetched logs. <YYYYMMDD>/<stack>/ is appended
+# by `slth` itself, so this is just the team's data root.
+export SLEUTH_DATA_DIR="$HOME/projects/ticketsolve/data"
