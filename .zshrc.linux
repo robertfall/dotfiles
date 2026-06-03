@@ -9,6 +9,10 @@ export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 # 1Password CLI
 eval "$(op completion zsh)"
 
+# 1Password SSH agent (mirrors .zshrc.macos). On WSL the socket doesn't exist
+# and SSH is routed through Windows via ssh.exe, so this is a no-op there.
+[[ -S "$HOME/.1password/agent.sock" ]] && export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
