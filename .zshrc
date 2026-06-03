@@ -1,6 +1,3 @@
-# Welcome message
-echo "👋 Welcome back, Robert! $(date '+%A, %B %d %Y • %H:%M')"
-
 # Basic
 autoload -U compinit && compinit
 autoload -Uz vcs_info
