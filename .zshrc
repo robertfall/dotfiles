@@ -17,6 +17,9 @@ precmd() {
     echo -e "\033[90m[${timestamp}] (${elapsed}s)\033[0m"
     unset cmd_start_time
   fi
+  # OSC 133: mark prompt start so tmux can jump/select between prompts
+  # (skip if wezterm shell-integration already emits semantic zones)
+  (( ${+functions[__wezterm_semantic_precmd]} )) || print -n '\e]133;A\e\\'
 }
 
 # Mise
@@ -50,7 +53,7 @@ alias tmux-keep='tmux set destroy-unattached off'
 
 # Set up the prompt (with git branch name)
 setopt PROMPT_SUBST
-PROMPT='%F{blue}%~%f %F{green}${vcs_info_msg_0_}%f %F{red}$%f '
+PROMPT='%F{blue}%~%f %F{green}${vcs_info_msg_0_}%f %F{red}<\$>%f '
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
