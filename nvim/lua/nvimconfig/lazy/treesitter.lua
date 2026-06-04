@@ -26,8 +26,7 @@ return {
 			-- install() is async and a no-op for parsers already present.
 			require("nvim-treesitter").install(parsers)
 
-			-- Treat octo buffers as markdown, and RBI (Sorbet) files as Ruby
-			vim.treesitter.language.register("markdown", "octo")
+			-- Treat RBI (Sorbet) files as Ruby
 			vim.treesitter.language.register("ruby", "rbi")
 
 			-- main branch does not auto-enable highlighting; start it per-buffer.
