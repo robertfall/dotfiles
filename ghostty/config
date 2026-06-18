@@ -18,8 +18,8 @@ gtk-titlebar = false
 
 # --- Spacing ---
 # wezterm: window_padding = { left/right/top/bottom = '30px' }
-window-padding-x = 30
-window-padding-y = 30
+window-padding-x = 10
+window-padding-y = 10
 
 # --- Tab bar ---
 # wezterm: hide_tab_bar_if_only_one_tab = true
