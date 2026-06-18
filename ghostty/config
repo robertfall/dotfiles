@@ -1,0 +1,28 @@
+# Ghostty configuration
+# Ported from wezterm/wezterm.lua — a minimal, chromeless terminal.
+# Tabs and splits are handled by tmux, so Ghostty's own chrome stays out of the way.
+
+# --- Appearance ---
+# wezterm: color_scheme = 'nord' (Nord ships built-in with Ghostty)
+theme = Nord
+# wezterm: font = 'FiraCode Nerd Font Mono', font_size = 12.0
+font-family = FiraCode Nerd Font Mono
+font-size = 12
+
+# --- Chromeless window ---
+# wezterm (Linux): window_decorations = 'NONE'
+# Drop window borders/controls and the GTK headerbar for a borderless look.
+# (gtk-titlebar is Linux-only and harmlessly ignored on macOS.)
+window-decoration = none
+gtk-titlebar = false
+
+# --- Spacing ---
+# wezterm: window_padding = { left/right/top/bottom = '30px' }
+window-padding-x = 30
+window-padding-y = 30
+
+# --- Tab bar ---
+# wezterm: hide_tab_bar_if_only_one_tab = true
+# Only reveal Ghostty's native tab bar when more than one tab is open;
+# day to day, tmux owns your tabs/windows so nothing extra shows.
+window-show-tab-bar = auto
