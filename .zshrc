@@ -102,7 +102,7 @@ export CLAUDE_CODE_DISABLE_MOUSE=1
 # Auto-start tmux for interactive shells, but never nest.
 # Set NO_TMUX=1 to bypass for a single shell session.
 if [[ $- == *i* ]] && [[ -z "$TMUX" ]] && [[ -z "$NO_TMUX" ]] && [[ -z "$SSH_CONNECTION" ]] && command -v tmux >/dev/null 2>&1; then
-  exec tmux new-session \; set-option destroy-unattached on
+  exec tmux new-session
 fi
 
 # Cortex CLI completion (disable via /settings in cortex)
