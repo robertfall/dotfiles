@@ -26,3 +26,21 @@ window-padding-y = 10
 # Only reveal Ghostty's native tab bar when more than one tab is open;
 # day to day, tmux owns your tabs/windows so nothing extra shows.
 window-show-tab-bar = auto
+
+# --- Clipboard keybindings ---
+# Mirror wezterm's plain Ctrl+C / Ctrl+V clipboard behaviour.
+
+# wezterm: Ctrl+C copies the selection if there is one, otherwise sends ^C (SIGINT).
+# Ghostty's `performable:` prefix does this natively: copy_to_clipboard is only
+# "performable" when text is selected; with no selection the keybind acts as if
+# unset and ^C is forwarded to the running program.
+keybind = performable:ctrl+c=copy_to_clipboard
+
+# wezterm: Ctrl+V pastes from the clipboard.
+keybind = ctrl+v=paste_from_clipboard
+
+# wezterm: Ctrl+Shift+V forwards a literal Ctrl+V (0x16) to the program instead
+# of pasting. This is what lets Claude Code receive Ctrl+V and paste an image —
+# binding plain Ctrl+V to paste (above) would otherwise swallow that byte.
+# `text:` uses Zig string-literal escapes, so \x16 is the raw Ctrl+V control byte.
+keybind = ctrl+shift+v=text:\x16
