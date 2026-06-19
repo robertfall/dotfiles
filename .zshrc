@@ -112,3 +112,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # sleuth — base directory for fetched logs. <YYYYMMDD>/<stack>/ is appended
 # by `slth` itself, so this is just the team's data root.
 export SLEUTH_DATA_DIR="$HOME/projects/ticketsolve/data"
+
+# OpenClaw Completion
+source "/Users/robertherbst/.openclaw/completions/openclaw.zsh"
