@@ -3,6 +3,10 @@
 # Note: atuin's env file is sourced from ~/.zshrc just before `atuin init` —
 # that runs earlier than this overlay, so don't move it here.
 
+# Mise (runtime version manager). macOS activates this in .zshrc.macos with the
+# Homebrew path; on Linux/WSL mise installs to ~/.local/bin.
+[ -x "$HOME/.local/bin/mise" ] && eval "$("$HOME/.local/bin/mise" activate zsh)"
+
 # Neovim
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
