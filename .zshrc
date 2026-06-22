@@ -91,6 +91,10 @@ if [[ "$OSTYPE" == linux* ]]; then
   [[ -n "$WSL_DISTRO_NAME" ]] && . ~/.zshrc.wsl
 fi
 
+# Device-specific config (per-machine, not tracked in dotfiles).
+# See .zshrc.local.example for the convention. No-op where absent.
+[ -f ~/.zshrc.local ] && . ~/.zshrc.local
+
 # Let tmux own mouse-tracking (see .tmux.conf `mouse on`) so wheel scroll
 # enters copy mode and `prefix [` keeps working. Otherwise Claude's TUI
 # grabs DECSET 1000 and tmux stops seeing mouse events.
@@ -112,6 +116,3 @@ export PATH="$HOME/.local/bin:$PATH"
 # sleuth — base directory for fetched logs. <YYYYMMDD>/<stack>/ is appended
 # by `slth` itself, so this is just the team's data root.
 export SLEUTH_DATA_DIR="$HOME/projects/ticketsolve/data"
-
-# OpenClaw Completion
-source "/Users/robertherbst/.openclaw/completions/openclaw.zsh"

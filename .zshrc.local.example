@@ -1,0 +1,17 @@
+# Device-specific zsh config.
+#
+# This is the device tier of the layered config: base (.zshrc) -> OS
+# (.zshrc.{macos,linux,wsl}) -> device (this file). Use it for things that vary
+# per *machine* rather than per OS — tools installed on only some boxes, local
+# paths, machine-only env vars.
+#
+# Copy to ~/.zshrc.local and uncomment what applies to THIS machine:
+#
+#   cp .zshrc.local.example ~/.zshrc.local
+#
+# ~/.zshrc.local is intentionally NOT tracked in dotfiles — it differs per
+# machine. .zshrc sources it automatically if present, so absence is a no-op.
+
+# OpenClaw shell completion (only present where OpenClaw is installed).
+# Guarded + $HOME-relative so this exact line is safe to drop on any machine.
+# [ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"
