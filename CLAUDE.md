@@ -42,10 +42,19 @@ some boxes, local paths), `.zshrc` sources `~/.zshrc.local` if it exists.
 
 ## Installation
 
-Files are symlinked to their expected locations:
-- `.zshrc*` files -> `~/.zshrc*`
-- `nvim/` -> `~/.config/nvim/`
-- `wezterm/` -> `~/.config/wezterm/` (or appropriate location)
+Run `./install.sh` to create or refresh all symlinks. It is re-runnable
+(idempotent): links already pointing at the repo are left untouched, and any
+target that exists as a real file or a wrong symlink is moved to
+`<target>.bak-<timestamp>` before relinking. Use `./install.sh --dry-run` to
+preview. The script detects the OS and links the right set:
+
+- Common: `.zshrc`, `.tmux.conf`, `.gitconfig`, `.secrets`, `nvim/` ->
+  `~/.config/nvim`, `ghostty/` -> `~/.config/ghostty`, `atuin/config.toml` ->
+  `~/.config/atuin/config.toml` (linked *into* the live dir, which holds
+  atuin's db/key/session — the dir itself is never replaced)
+- macOS: `.zshrc.macos`, `wezterm/wezterm.lua` -> `~/.wezterm.lua`
+- Linux/WSL: `.zshrc.linux`, `wezterm/wezterm.lua` ->
+  `~/.config/wezterm/wezterm.lua`, plus `.zshrc.wsl` on WSL
 
 ## Notes
 
