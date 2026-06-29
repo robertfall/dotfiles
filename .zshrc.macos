@@ -1,14 +1,12 @@
-# Mise
-eval "$(/opt/homebrew/bin/mise activate zsh)"
+# Mise (runtime version manager). Installs to Homebrew on some machines,
+# ~/.local/bin on others — activate whichever exists.
+for _mise in /opt/homebrew/bin/mise "$HOME/.local/bin/mise"; do
+  [ -x "$_mise" ] && eval "$("$_mise" activate zsh)" && break
+done
+unset _mise
 
-# ZSH plugins
-. /opt/homebrew/share/antigen/antigen.zsh
-antigen bundle agkozak/zsh-z
-antigen bundle reegnz/jq-zsh-plugin
-antigen apply
-
-# Atuin env
-. "$HOME/.atuin/bin/env"
+# Note: zsh plugins (zsh-z, jq) load via zinit in ~/.zshrc, and atuin is
+# initialized there too — both used to live here under antigen.
 
 # Terraform completions
 complete -o nospace -C /opt/homebrew/bin/terraform terraform
