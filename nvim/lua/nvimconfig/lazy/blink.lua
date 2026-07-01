@@ -1,6 +1,5 @@
 return {
   'saghen/blink.cmp',
-  dependencies = { 'milanglacier/minuet-ai.nvim' },
   -- use a release tag to download pre-built binaries
   version = '1.*',
 
@@ -8,7 +7,6 @@ return {
     require('blink.cmp').setup({
       keymap = {
         preset = 'default',
-        ['<A-s>'] = require('minuet').make_blink_map(),
       },
 
       appearance = {
@@ -21,14 +19,7 @@ return {
       },
 
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'minuet' },
-        providers = {
-          minuet = {
-            name = 'minuet',
-            module = 'minuet.blink',
-            score_offset = 100,
-          },
-        },
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
       },
 
       fuzzy = { implementation = "prefer_rust_with_warning" }
