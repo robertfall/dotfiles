@@ -1,0 +1,53 @@
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+approvals_reviewer = "guardian_subagent"
+
+[projects."/Users/robertherbst/projects/dotfiles"]
+trust_level = "untrusted"
+
+[projects."/Users/robertherbst/projects/brilliant-delight/seatingplanapp"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/ticketsolve/primary"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/orlando-planner"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/ticketsolve/clients"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/freechurch/platform"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/ticketsolve/ticketsolve-ai-access-broker"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/ticketsolve/notion-snowflake"]
+trust_level = "trusted"
+
+[projects."/"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/recall"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/ticketsolve/typst-scratch"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+gpt-5-codex = "gpt-5.2-codex"
+"gpt-5.3-codex" = "gpt-5.4"
+
+[features]
+memories = true
+
+[tui.keymap.editor]
+insert_newline = "shift-enter"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[mcp_servers.pencil]
+command = "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64"
+args = [ "--app", "desktop" ]

@@ -102,6 +102,7 @@ link .secrets          "$HOME/.secrets"
 link nvim              "$HOME/.config/nvim"
 link ghostty           "$HOME/.config/ghostty"
 link atuin/config.toml "$HOME/.config/atuin/config.toml"
+link codex/config.toml "$HOME/.codex/config.toml"
 
 case "$OSTYPE" in
   darwin*)
