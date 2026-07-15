@@ -1,9 +1,9 @@
-model = "gpt-5.5"
-model_reasoning_effort = "xhigh"
+model = "gpt-5.6-sol"
+model_reasoning_effort = "high"
 approvals_reviewer = "guardian_subagent"
 
 [projects."/Users/robertherbst/projects/dotfiles"]
-trust_level = "untrusted"
+trust_level = "trusted"
 
 [projects."/Users/robertherbst/projects/brilliant-delight/seatingplanapp"]
 trust_level = "trusted"
@@ -35,6 +35,15 @@ trust_level = "trusted"
 [projects."/Users/robertherbst/projects/ticketsolve/typst-scratch"]
 trust_level = "trusted"
 
+[projects."/Users/robertherbst/projects/ticketsolve/backend/primary"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/ticketsolve/sec-broker-menubar"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 gpt-5-codex = "gpt-5.2-codex"
 "gpt-5.3-codex" = "gpt-5.4"
@@ -47,6 +56,7 @@ insert_newline = "shift-enter"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
+"gpt-5.6-sol" = 4
 
 [mcp_servers.pencil]
 command = "/Applications/Pencil.app/Contents/Resources/app.asar.unpacked/out/mcp-server-darwin-arm64"
