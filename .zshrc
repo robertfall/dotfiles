@@ -117,9 +117,10 @@ export PATH="$HOME/.local/bin:$PATH"
 # by `slth` itself, so this is just the team's data root.
 export SLEUTH_DATA_DIR="$HOME/projects/ticketsolve/data"
 
-# >>> sec-broker >>>
-case ":$PATH:" in
-  *":$HOME/.local/share/sec-broker/forward-bin:"*) ;;
-  *) export PATH="$HOME/.local/share/sec-broker/forward-bin:$PATH" ;;
-esac
-# <<< sec-broker <<<
+# Prefer broker forwarding wrappers on machines where sec-broker is installed.
+if [[ -d "$HOME/.local/share/sec-broker/forward-bin" ]]; then
+  case ":$PATH:" in
+    *":$HOME/.local/share/sec-broker/forward-bin:"*) ;;
+    *) export PATH="$HOME/.local/share/sec-broker/forward-bin:$PATH" ;;
+  esac
+fi

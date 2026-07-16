@@ -3,7 +3,7 @@ model_reasoning_effort = "xhigh"
 approvals_reviewer = "guardian_subagent"
 
 [projects."/Users/robertherbst/projects/dotfiles"]
-trust_level = "untrusted"
+trust_level = "trusted"
 
 [projects."/Users/robertherbst/projects/brilliant-delight/seatingplanapp"]
 trust_level = "trusted"
@@ -54,6 +54,15 @@ trust_level = "trusted"
 trust_level = "trusted"
 
 [projects."/home/robertherbst/projects/ticketsolve/mangopay-cli"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/ticketsolve/backend/primary"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst"]
+trust_level = "trusted"
+
+[projects."/Users/robertherbst/projects/ticketsolve/sec-broker-menubar"]
 trust_level = "trusted"
 
 [notice.model_migrations]
