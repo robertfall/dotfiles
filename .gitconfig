@@ -5,3 +5,5 @@
 	email = rob@robertfall.com
 [init]
 	defaultBranch = main
+[includeIf "gitdir:~/projects/ticketsolve/"]
+	path = /home/robertherbst/.config/sec-broker/gitconfig

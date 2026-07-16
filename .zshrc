@@ -116,3 +116,10 @@ export PATH="$HOME/.local/bin:$PATH"
 # sleuth — base directory for fetched logs. <YYYYMMDD>/<stack>/ is appended
 # by `slth` itself, so this is just the team's data root.
 export SLEUTH_DATA_DIR="$HOME/projects/ticketsolve/data"
+
+# >>> sec-broker >>>
+case ":$PATH:" in
+  *":$HOME/.local/share/sec-broker/forward-bin:"*) ;;
+  *) export PATH="$HOME/.local/share/sec-broker/forward-bin:$PATH" ;;
+esac
+# <<< sec-broker <<<
