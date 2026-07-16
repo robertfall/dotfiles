@@ -55,6 +55,24 @@ preview. The script detects the OS and links the right set:
 - macOS: `.zshrc.macos`, `wezterm/wezterm.lua` -> `~/.wezterm.lua`
 - Linux/WSL: `.zshrc.linux`, `wezterm/wezterm.lua` ->
   `~/.config/wezterm/wezterm.lua`, plus `.zshrc.wsl` on WSL
+- Linux opt-in (`./install.sh --hyprland`): `hypr/`, `waybar/`, `mako/` ->
+  their matching directories under `~/.config`, plus
+  `xdg-desktop-portal/hyprland-portals.conf` -> matching path under
+  `~/.config/xdg-desktop-portal/` (routes the Settings/appearance portal
+  interface to xdg-desktop-portal-gtk instead of xdg-desktop-portal-gnome,
+  since there's no GNOME Shell to back the gnome portal backend). Without
+  this flag, those targets are left untouched even when Hyprland is
+  installed.
+- `hypr/hyprland-uwsm.desktop` is tracked here as the source of truth but
+  **not** symlinked by `install.sh` (it never uses sudo by design). It has to
+  be copied into a root-owned path by hand:
+  `sudo tee /usr/local/share/wayland-sessions/hyprland-uwsm.desktop < hypr/hyprland-uwsm.desktop`.
+  This adds a second "Hyprland (uwsm)" entry in GDM's session list without
+  touching the package-owned `/usr/share/wayland-sessions/hyprland.desktop`,
+  which stays as a fallback if the uwsm-wrapped session ever fails to start.
+  uwsm is required for this entry (installed here from the `solopasha/hyprland`
+  COPR, restricted to `includepkgs=uwsm` so it can never touch the Hyprland
+  package itself, which comes from a different COPR).
 
 ## Notes
 

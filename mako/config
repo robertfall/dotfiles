@@ -1,0 +1,23 @@
+# ~/.config/mako/config
+font=sans-serif 16
+background-color=#1e1e2e
+text-color=#cdd6f4
+border-color=#89b4fa
+border-size=2
+border-radius=8
+default-timeout=5000
+width=420
+height=150
+padding=16
+margin=10
+anchor=top-center
+on-notify=exec paplay /usr/share/sounds/freedesktop/stereo/message-new-instant.oga
+
+# Compact, silent volume OSD. The notification's value hint draws the bar.
+[app-name=volume-osd]
+on-notify=none
+default-timeout=1200
+ignore-timeout=1
+width=300
+height=90
+progress-color=over #89b4fa

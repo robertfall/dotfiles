@@ -1,0 +1,41 @@
+* {
+    font-family: sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(30, 30, 46, 0.9);
+    color: #cdd6f4;
+}
+
+#workspaces button {
+    min-width: 8px;
+    min-height: 8px;
+    margin: 11px 4px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    color: transparent;
+    background: #6c7086;
+    background-image: none;
+    box-shadow: none;
+}
+
+#workspaces button.active {
+    min-width: 24px;
+    background: #89b4fa;
+}
+
+#workspaces button.urgent {
+    background: #f38ba8;
+}
+
+#clock,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#tray {
+    padding: 0 10px;
+}

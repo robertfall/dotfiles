@@ -7,8 +7,10 @@
 # aside to <target>.bak-<timestamp> before the correct link is created.
 #
 # Usage:
-#   ./install.sh            create/refresh all symlinks for this OS
-#   ./install.sh --dry-run  show what would happen, change nothing
+#   ./install.sh                         create/refresh core symlinks for this OS
+#   ./install.sh --dry-run               show what would happen, change nothing
+#   ./install.sh --hyprland              also link Hyprland, Waybar, and Mako
+#   ./install.sh --dry-run --hyprland    preview the Hyprland opt-in
 #   ./install.sh --help
 #
 # Written for bash 3.2 (macOS system bash) so it runs unchanged on Linux/WSL.
@@ -19,14 +21,18 @@ set -euo pipefail
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 DRY_RUN=0
-case "${1:-}" in
-  --dry-run|-n) DRY_RUN=1 ;;
-  --help|-h)
-    sed -n '3,18p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
-    exit 0 ;;
-  "") ;;
-  *) echo "unknown argument: $1 (try --help)" >&2; exit 2 ;;
-esac
+INSTALL_HYPRLAND=0
+while [ "$#" -gt 0 ]; do
+  case "$1" in
+    --dry-run|-n) DRY_RUN=1 ;;
+    --hyprland) INSTALL_HYPRLAND=1 ;;
+    --help|-h)
+      sed -n '3,16p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'
+      exit 0 ;;
+    *) echo "unknown argument: $1 (try --help)" >&2; exit 2 ;;
+  esac
+  shift
+done
 
 # One timestamp per run, shared by every backup it makes.
 TS="$(date +%Y%m%d-%H%M%S)"
@@ -116,6 +122,14 @@ case "$OSTYPE" in
     echo "Linux:"
     link .zshrc.linux      "$HOME/.zshrc.linux"
     link wezterm/wezterm.lua "$HOME/.config/wezterm/wezterm.lua"
+    if [ "$INSTALL_HYPRLAND" -eq 1 ]; then
+      echo
+      echo "Hyprland (opted in):"
+      link hypr              "$HOME/.config/hypr"
+      link waybar            "$HOME/.config/waybar"
+      link mako              "$HOME/.config/mako"
+      link xdg-desktop-portal/hyprland-portals.conf "$HOME/.config/xdg-desktop-portal/hyprland-portals.conf"
+    fi
     if is_wsl; then
       echo
       echo "WSL:"
