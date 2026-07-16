@@ -63,16 +63,41 @@ preview. The script detects the OS and links the right set:
   since there's no GNOME Shell to back the gnome portal backend). Without
   this flag, those targets are left untouched even when Hyprland is
   installed.
-- `hypr/hyprland-uwsm.desktop` is tracked here as the source of truth but
-  **not** symlinked by `install.sh` (it never uses sudo by design). It has to
-  be copied into a root-owned path by hand:
-  `sudo tee /usr/local/share/wayland-sessions/hyprland-uwsm.desktop < hypr/hyprland-uwsm.desktop`.
-  This adds a second "Hyprland (uwsm)" entry in GDM's session list without
-  touching the package-owned `/usr/share/wayland-sessions/hyprland.desktop`,
-  which stays as a fallback if the uwsm-wrapped session ever fails to start.
-  uwsm is required for this entry (installed here from the `solopasha/hyprland`
+- `hypr/hyprland-managed.desktop`, `hypr/hyprland-plain-hidden.desktop`, and
+  `hypr/hyprland-uwsm-managed-hidden.desktop` are tracked here as the source
+  of truth but **not** symlinked by `install.sh` (it never uses sudo by
+  design). Copy them into root-owned paths by hand:
+  ```
+  sudo tee /usr/local/share/wayland-sessions/hyprland-managed.desktop < hypr/hyprland-managed.desktop
+  sudo tee /usr/local/share/wayland-sessions/hyprland.desktop         < hypr/hyprland-plain-hidden.desktop
+  sudo tee /usr/local/share/wayland-sessions/hyprland-uwsm.desktop    < hypr/hyprland-uwsm-managed-hidden.desktop
+  ```
+  The first adds the one visible "Hyprland (uwsm)" entry, launching Hyprland
+  through uwsm directly (`uwsm start -N Hyprland -D Hyprland -e --
+  /usr/bin/start-hyprland`, hardcoding the compositor path rather than
+  referencing the `hyprland.desktop` ID — see below for why) — this gives it
+  proper systemd session integration (see `hypr/hyprland.conf`'s AUTOSTART
+  comments — this is what makes `graphical-session.target`, and therefore the
+  portal, actually work). The second and third **mask** two entries that
+  would otherwise also show up in GDM: the package-owned plain
+  `/usr/share/wayland-sessions/hyprland.desktop`, and the Hyprland package's
+  *own* uwsm-wrapped entry (`/usr/share/wayland-sessions/hyprland-uwsm.desktop`,
+  shipped by the `hyprland` COPR package itself) — the latter has to be
+  masked too because it launches uwsm by referencing the `hyprland.desktop`
+  ID, and `Hidden=true` makes that ID vanish for *every* consumer, including
+  uwsm's own lookup, not just GDM's session picker; masking it any other way
+  would leave a second, broken-if-selected entry in the list. All masking is
+  same-filename/higher-priority-XDG-dir/`Hidden=true` per the Desktop Entry
+  Spec — none of the original package files are touched or deleted, so a
+  package update can't disturb this, and any of it reverts instantly by
+  deleting the corresponding mask file.
+  uwsm is required for this (installed here from the `solopasha/hyprland`
   COPR, restricted to `includepkgs=uwsm` so it can never touch the Hyprland
   package itself, which comes from a different COPR).
+  **If login ever fails after this change:** switch to a TTY (Ctrl+Alt+F3),
+  log in there, and either `sudo rm /usr/local/share/wayland-sessions/hyprland.desktop`
+  to instantly bring back the plain entry, or run `Hyprland` directly from
+  the TTY for a bare session.
 
 ## Notes
 

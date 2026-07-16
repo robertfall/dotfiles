@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Hyprland (uwsm)
 Comment=Hyprland via Universal Wayland Session Manager — proper systemd session/portal integration
-Exec=uwsm start -- hyprland.desktop
+Exec=uwsm start -N Hyprland -D Hyprland -e -- /usr/bin/start-hyprland
 TryExec=uwsm
 DesktopNames=Hyprland
 Type=Application

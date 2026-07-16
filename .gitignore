@@ -1,2 +1,3 @@
 nvim/undodir
 wezterm/shell-integration.sh
+.claude/settings.local.json
