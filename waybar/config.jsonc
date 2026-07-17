@@ -2,9 +2,13 @@
     "layer": "top",
     "position": "top",
     "height": 30,
+    "margin": "5 8 0 8",
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "tray"],
+    "modules-center": ["clock", "custom/eurzar"],
+    "modules-right": ["custom/orbit", "tray"],
+    // pulseaudio/network/bluetooth/cpu/memory configs are still defined
+    // below, just not in modules-right -- add the name back to the array
+    // above to bring one back, no need to retype its config.
 
     "hyprland/workspaces": {
         "format": "",
@@ -12,9 +16,9 @@
     },
     "clock": { "format": "{:%a %d %b  %H:%M}" },
 
-    // Plain-text labels so they render without a Nerd Font.
-    // Install a Nerd Font (e.g. `sudo dnf install fira-code-nerd-fonts`) and
-    // swap these for glyphs if you want icons.
+    // cpu/memory/network/pulseaudio/bluetooth stay plain text -- kept as-is,
+    // not a hard rule against icons (FiraCode Nerd Font is installed, used
+    // by the orbit module below; feel free to swap these to glyphs too).
     "cpu": { "format": "CPU {usage}%" },
     "memory": { "format": "RAM {}%" },
     "network": {
@@ -27,5 +31,23 @@
         "format-muted": "muted",
         "on-click": "pavucontrol"
     },
-    "tray": { "spacing": 10 }
+    "bluetooth": {
+        "format": "bt on",
+        "format-connected": "bt {device_alias}",
+        "format-off": "bt off",
+        "format-disabled": "bt off",
+        "on-click": "flatpak run io.github.kaii_lb.Overskride"
+    },
+    "custom/eurzar": {
+        "exec": "bash ~/.config/hypr/scripts/eur-zar.sh",
+        "return-type": "json",
+        "interval": 900
+    },
+    "custom/orbit": {
+        "exec": "orbit waybar-status",
+        "return-type": "json",
+        "interval": 10,
+        "on-click": "orbit toggle top-right"
+    },
+    "tray": { "spacing": 10, "icon-size": 16 }
 }

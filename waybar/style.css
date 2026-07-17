@@ -1,41 +1,112 @@
 * {
-    font-family: sans-serif;
+    font-family: "Arimo", sans-serif;
     font-size: 13px;
     min-height: 0;
 }
 
+/* No bar background at all -- only the per-section islands below show
+   anything, so the gaps between them are truly transparent to the desktop. */
 window#waybar {
-    background: rgba(30, 30, 46, 0.9);
+    background: transparent;
     color: #cdd6f4;
 }
 
+/* No background/radius here (that's what makes it not an island), but the
+   SAME vertical margin/padding as the islands below -- removing this
+   earlier is what broke the workspace circles. That padding was never just
+   cosmetic: it's what constrained the cross-axis space GTK stretches the
+   buttons to fill. Take it away and the buttons stretch much taller,
+   breaking the width-to-height match that made them circles.
+   Horizontal spacing is independent of that (it's along the main axis, not
+   the cross axis the circle fix depends on), so it's been cut way down:
+   the previous 8px margin + 14px padding = 30px total, versus hyprland.conf's
+   gaps_out=10 for windows' own left inset -- workspaces sat noticeably
+   further from the screen edge than every window did. 0+2=2px (plus the
+   bar's own 8px outer margin) lands close to that same 10px. */
+.modules-left {
+    margin: 6px 8px 4px 0;
+    padding: 4px 14px 4px 2px;
+}
+
+/* Semi-opaque floating "islands" for center/right only -- workspaces (left)
+   stay bare against the wallpaper, no box around them. */
+.modules-center,
+.modules-right {
+    /* White, not the near-wallpaper-matching dark color from before --
+       that's exactly why it was invisible. 0.15 alpha over a near-black
+       wallpaper still composites dark enough (~rgb(64,64,64)) to keep the
+       existing light text (#cdd6f4) readable, while being unmistakably
+       lighter than the wallpaper itself. */
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    /* Bottom margin shaved down from 6px to 4px: hyprland.conf's own
+       gaps_out (10px) already adds independent space below the reserved
+       bar zone that has nothing to do with waybar's margin, while the top
+       only gets waybar's own margin-top (8px) -- 6px+10px bottom vs
+       8px+6px top was never going to land even. 4px+10px=14 now matches
+       8px+6px=14 top. */
+    margin: 6px 8px 4px 8px;
+    padding: 4px 14px;
+}
+
+/* tray carries its own inherent ~30px of edge-space on each conceptual
+   side (confirmed by testing tray alone: ~30px both sides, roughly
+   symmetric). When custom/orbit precedes it, that space on tray's left
+   mostly gets absorbed into the orbit-to-tray gap, but its right-side
+   amount always shows up in full since nothing follows it -- stacking
+   with this island's own 14px padding-right to produce ~31px total vs
+   ~17px on the left. Cutting padding-right to 0 here (modules-right only,
+   modules-center keeps the normal 14px both sides) leans on tray's own
+   spacing alone instead of adding more on top of it. */
+.modules-right {
+    padding-right: 0;
+}
+
+/* Measured directly via screenshot + pixel-diffing (grim + PIL): this
+   button's actual rendered height sits at ~19px logical no matter what
+   min-height/font-size is set to -- three separate CSS attempts at
+   shrinking it (all:unset, font-size:0 on the button, font-size:0 on the
+   .workspace-label child) produced pixel-identical output. GTK stretches
+   these to the box's cross-axis size and nothing in GTK CSS (no
+   align-items/valign equivalent) can override that here. Rather than keep
+   fighting an immovable height, match width to it instead -- 18px is close
+   to the ~19px logical height actually being rendered, which is what
+   makes this a circle rather than a pill. */
 #workspaces button {
-    min-width: 8px;
+    all: unset;
+    min-width: 18px;
     min-height: 8px;
-    margin: 11px 4px;
-    padding: 0;
-    border: none;
+    margin: 0 4px;
     border-radius: 999px;
-    color: transparent;
-    background: #6c7086;
-    background-image: none;
-    box-shadow: none;
+    background-color: #6c7086;
+    transition: min-width 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 #workspaces button.active {
-    min-width: 24px;
-    background: #89b4fa;
+    min-width: 44px;
+    background-color: #89b4fa;
 }
 
 #workspaces button.urgent {
-    background: #f38ba8;
+    background-color: #f38ba8;
 }
 
-#clock,
+#clock {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+#custom-eurzar {
+    color: #9399b2;
+    padding: 0 10px 0 0;
+}
+
 #cpu,
 #memory,
 #network,
 #pulseaudio,
+#bluetooth,
 #tray {
     padding: 0 10px;
 }
