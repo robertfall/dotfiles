@@ -8,6 +8,12 @@ theme = Nord
 # wezterm: font = 'FiraCode Nerd Font Mono', font_size = 12.0
 font-family = FiraCode Nerd Font Mono
 font-size = 12
+# 20% transparent window (1.0 = opaque, 0.0 = fully transparent)
+background-opacity = 0.8
+# Without this, tmux/Neovim paint an explicit background on every cell,
+# which Ghostty treats as opaque by design — opacity would only show in
+# the thin window-padding gutter otherwise.
+background-opacity-cells = true
 
 # --- Chromeless window ---
 # wezterm (Linux): window_decorations = 'NONE'
