@@ -4,7 +4,7 @@
     "height": 30,
     "margin": "5 8 0 8",
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock", "custom/eurzar"],
+    "modules-center": ["custom/usdzar", "clock", "custom/eurzar"],
     "modules-right": ["custom/orbit", "tray"],
     // pulseaudio/network/bluetooth/cpu/memory configs are still defined
     // below, just not in modules-right -- add the name back to the array
@@ -37,6 +37,11 @@
         "format-off": "bt off",
         "format-disabled": "bt off",
         "on-click": "flatpak run io.github.kaii_lb.Overskride"
+    },
+    "custom/usdzar": {
+        "exec": "bash ~/.config/hypr/scripts/usd-zar.sh",
+        "return-type": "json",
+        "interval": 900
     },
     "custom/eurzar": {
         "exec": "bash ~/.config/hypr/scripts/eur-zar.sh",

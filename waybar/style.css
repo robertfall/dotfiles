@@ -97,6 +97,11 @@ window#waybar {
     padding: 0 10px;
 }
 
+#custom-usdzar {
+    color: #9399b2;
+    padding: 0 0 0 10px;
+}
+
 #custom-eurzar {
     color: #9399b2;
     padding: 0 10px 0 0;
