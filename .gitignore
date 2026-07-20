@@ -2,6 +2,7 @@ nvim/undodir
 wezterm/shell-integration.sh
 .claude/settings.local.json
 
-# ya pkg-managed flavor assets -- package.toml tracks the dependency,
+# ya pkg-managed flavor/plugin assets -- package.toml tracks the dependency,
 # the fetched files themselves don't need to be committed.
 yazi/flavors/
+yazi/plugins/

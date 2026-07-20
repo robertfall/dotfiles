@@ -1,0 +1,14 @@
+[[mgr.prepend_keymap]]
+on  = "y"
+run = [ "yank", 'plugin clipboard -- --action=copy' ]
+desc = "Yank selected files (copy) — also pushes to system clipboard"
+
+[[mgr.prepend_keymap]]
+on  = "x"
+run = [ "yank --cut", 'plugin clipboard -- --action=copy' ]
+desc = "Yank selected files (cut) — also pushes to system clipboard"
+
+[[mgr.prepend_keymap]]
+on  = "<C-p>"
+run = [ "plugin clipboard -- --action=paste" ]
+desc = "Paste files from system clipboard"

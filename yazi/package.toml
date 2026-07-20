@@ -1,5 +1,7 @@
-[plugin]
-deps = []
+[[plugin.deps]]
+use = "XYenon/clipboard"
+rev = "d4d19ea"
+hash = "2cfc56d62f9ca0c62ce356e4364c3d89"
 
 [[flavor.deps]]
 use = "AdithyanA2005/nord"
