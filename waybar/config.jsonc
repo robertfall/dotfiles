@@ -5,7 +5,7 @@
     "margin": "5 8 0 8",
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["custom/usdzar", "clock", "custom/eurzar"],
-    "modules-right": ["custom/orbit", "tray"],
+    "modules-right": ["custom/vpn", "custom/orbit", "tray"],
     // pulseaudio/network/bluetooth/cpu/memory configs are still defined
     // below, just not in modules-right -- add the name back to the array
     // above to bring one back, no need to retype its config.
@@ -53,6 +53,12 @@
         "return-type": "json",
         "interval": 10,
         "on-click": "orbit toggle top-right"
+    },
+    "custom/vpn": {
+        "exec": "bash ~/.config/hypr/scripts/vpn-status.sh",
+        "return-type": "json",
+        "interval": 10,
+        "on-click": "bash ~/.config/hypr/scripts/vpn-status.sh --toggle"
     },
     "tray": { "spacing": 10, "icon-size": 16 }
 }
