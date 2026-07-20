@@ -4,7 +4,7 @@
     "height": 30,
     "margin": "5 8 0 8",
     "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["custom/usdzar", "clock", "custom/eurzar"],
+    "modules-center": ["custom/usdzar-pct", "image#usdzar-spark", "custom/usdzar", "clock", "custom/eurzar", "image#eurzar-spark", "custom/eurzar-pct"],
     "modules-right": ["custom/vpn", "custom/orbit", "tray"],
     // pulseaudio/network/bluetooth/cpu/memory configs are still defined
     // below, just not in modules-right -- add the name back to the array
@@ -41,12 +41,40 @@
     "custom/usdzar": {
         "exec": "bash ~/.config/hypr/scripts/usd-zar.sh",
         "return-type": "json",
-        "interval": 900
+        "interval": 300
+    },
+    "image#usdzar-spark": {
+        "exec": "bash ~/.config/hypr/scripts/usd-zar-sparkline.sh",
+        "size": 100,
+        "interval": 300,
+        "signal": 9,
+        "on-scroll-up": "bash ~/.config/hypr/scripts/usd-zar-sparkline-cycle.sh up",
+        "on-scroll-down": "bash ~/.config/hypr/scripts/usd-zar-sparkline-cycle.sh down"
+    },
+    "custom/usdzar-pct": {
+        "exec": "cat ~/.cache/waybar-forex/usdzar-pct.json",
+        "return-type": "json",
+        "interval": 300,
+        "signal": 10
     },
     "custom/eurzar": {
         "exec": "bash ~/.config/hypr/scripts/eur-zar.sh",
         "return-type": "json",
-        "interval": 900
+        "interval": 300
+    },
+    "image#eurzar-spark": {
+        "exec": "bash ~/.config/hypr/scripts/eur-zar-sparkline.sh",
+        "size": 100,
+        "interval": 300,
+        "signal": 8,
+        "on-scroll-up": "bash ~/.config/hypr/scripts/eur-zar-sparkline-cycle.sh up",
+        "on-scroll-down": "bash ~/.config/hypr/scripts/eur-zar-sparkline-cycle.sh down"
+    },
+    "custom/eurzar-pct": {
+        "exec": "cat ~/.cache/waybar-forex/eurzar-pct.json",
+        "return-type": "json",
+        "interval": 300,
+        "signal": 11
     },
     "custom/orbit": {
         "exec": "orbit waybar-status",

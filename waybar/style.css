@@ -97,6 +97,25 @@ window#waybar {
     padding: 0 10px;
 }
 
+/* Order is pct, spark, value | clock | value, spark, pct -- each pair's gap
+   comes from exactly one side's padding (never both, to avoid doubling up).
+   #custom-usdzar's existing left-padding already covers spark-to-value, so
+   these two only need padding facing the pct labels, closing the one gap
+   nothing else was covering. Note: image#name modules get a CSS *class*
+   (.name), not an id like custom/name modules do (#custom-name) -- #usdzar-
+   spark silently matches nothing. custom/usdzar-pct and custom/eurzar-pct
+   deliberately have no padding rule of their own: they're the outermost
+   modules now, so the island's existing 14px padding (.modules-center) is
+   already the outer-edge gap -- adding more here would double it up, which
+   is exactly the "extra padding around the outside" that needed removing. */
+.usdzar-spark {
+    padding: 0 0 0 10px;
+}
+
+.eurzar-spark {
+    padding: 0 10px 0 0;
+}
+
 #custom-usdzar {
     color: #9399b2;
     padding: 0 0 0 10px;
