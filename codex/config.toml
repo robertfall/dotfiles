@@ -65,6 +65,9 @@ trust_level = "trusted"
 [projects."/Users/robertherbst/projects/ticketsolve/sec-broker-menubar"]
 trust_level = "trusted"
 
+[projects."/home/robertherbst/projects/ticketsolve/ticketsolve-ai-access-tools"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 gpt-5-codex = "gpt-5.2-codex"
 "gpt-5.3-codex" = "gpt-5.4"
