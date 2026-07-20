@@ -34,7 +34,8 @@ some boxes, local paths), `.zshrc` sources `~/.zshrc.local` if it exists.
 ## Key Tools
 
 - **mise** - Runtime version manager (node, ruby, etc.)
-- **antigen** - Zsh plugin manager (zsh-z, jq-zsh-plugin)
+- **zinit** - Zsh plugin manager (jq-zsh-plugin)
+- **zoxide** - Smart `cd` / directory jumper (also what yazi's `Z` jump shells out to)
 - **atuin** - Shell history sync
 - **fzf** - Fuzzy finder
 - **neovim** - Editor with lazy.nvim plugin management

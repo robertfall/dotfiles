@@ -31,7 +31,6 @@ if [ ! -d "$ZINIT_HOME/.git" ]; then
 fi
 source "$ZINIT_HOME/zinit.zsh"
 
-zinit light agkozak/zsh-z
 zinit light reegnz/jq-zsh-plugin
 
 autoload edit-command-line
@@ -101,6 +100,7 @@ fi
 export CLAUDE_CODE_DISABLE_MOUSE=1
 
 eval "$(atuin init zsh)"
+eval "$(zoxide init zsh)"
 
 # Auto-start tmux for interactive shells, but never nest.
 # Set NO_TMUX=1 to bypass for a single shell session.
