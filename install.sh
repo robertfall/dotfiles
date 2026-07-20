@@ -131,6 +131,7 @@ case "$OSTYPE" in
       link hypr              "$HOME/.config/hypr"
       link waybar            "$HOME/.config/waybar"
       link mako              "$HOME/.config/mako"
+      link fuzzel            "$HOME/.config/fuzzel"
       link xdg-desktop-portal/hyprland-portals.conf "$HOME/.config/xdg-desktop-portal/hyprland-portals.conf"
     fi
     if is_wsl; then

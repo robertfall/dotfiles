@@ -56,8 +56,8 @@ preview. The script detects the OS and links the right set:
 - macOS: `.zshrc.macos`, `wezterm/wezterm.lua` -> `~/.wezterm.lua`
 - Linux/WSL: `.zshrc.linux`, `wezterm/wezterm.lua` ->
   `~/.config/wezterm/wezterm.lua`, plus `.zshrc.wsl` on WSL
-- Linux opt-in (`./install.sh --hyprland`): `hypr/`, `waybar/`, `mako/` ->
-  their matching directories under `~/.config`, plus
+- Linux opt-in (`./install.sh --hyprland`): `hypr/`, `waybar/`, `mako/`,
+  `fuzzel/` -> their matching directories under `~/.config`, plus
   `xdg-desktop-portal/hyprland-portals.conf` -> matching path under
   `~/.config/xdg-desktop-portal/` (routes the Settings/appearance portal
   interface to xdg-desktop-portal-gtk instead of xdg-desktop-portal-gnome,
