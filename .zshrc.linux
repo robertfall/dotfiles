@@ -37,3 +37,13 @@ export DOCKER_HOST="unix://${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/podman/podman.
 # given command instead of a bare login shell; `env NO_TMUX=1` trips the bypass
 # gate in .zshrc so we land in plain zsh.
 alias ghostty-bare='ghostty -e env NO_TMUX=1 zsh -il'
+
+# yazi: cd the actual shell to wherever you navigated to on quit (a subprocess
+# can't cd its parent otherwise) -- yazi's own documented wrapper pattern.
+function y() {
+  local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+  command yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+  command rm -f -- "$tmp"
+}

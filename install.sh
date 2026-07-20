@@ -107,8 +107,11 @@ link .gitconfig        "$HOME/.gitconfig"
 link .secrets          "$HOME/.secrets"
 link nvim              "$HOME/.config/nvim"
 link ghostty           "$HOME/.config/ghostty"
+link yazi              "$HOME/.config/yazi"
 link atuin/config.toml "$HOME/.config/atuin/config.toml"
 link codex/config.toml "$HOME/.codex/config.toml"
+link systemd/user/qalc-exchange-rates.service "$HOME/.config/systemd/user/qalc-exchange-rates.service"
+link systemd/user/qalc-exchange-rates.timer   "$HOME/.config/systemd/user/qalc-exchange-rates.timer"
 
 case "$OSTYPE" in
   darwin*)

@@ -1,0 +1,13 @@
+[Unit]
+Description=Periodic refresh of Qalculate's exchange rate data
+
+[Timer]
+OnBootSec=2min
+# ECB only publishes new reference rates once per business day, so anything
+# faster than hourly just re-downloads the same numbers. Change this if you
+# switch to a data source that actually updates intraday.
+OnUnitActiveSec=1h
+Persistent=true
+
+[Install]
+WantedBy=timers.target

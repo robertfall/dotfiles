@@ -1,0 +1,7 @@
+[Unit]
+Description=Refresh Qalculate's cached exchange rate data
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/qalc -e -t 1
+StandardOutput=null
