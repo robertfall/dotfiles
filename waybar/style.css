@@ -1,5 +1,5 @@
 * {
-    font-family: "Arimo", sans-serif;
+    font-family: "Arimo Nerd Font", sans-serif;
     font-size: 13px;
     min-height: 0;
 }
@@ -135,19 +135,11 @@ window#waybar {
     padding: 0 10px;
 }
 
-/* Leftmost module in modules-right -- the island's own left padding (4px
-   14px, from .modules-right) already provides outer-edge spacing, so only
-   the right side needs its own padding here (separating it from orbit),
-   same reasoning as #custom-usdzar/#custom-eurzar being right/left-only. */
-#custom-vpn {
-    padding: 0 10px 0 0;
-}
-
-/* Thin vertical divider between the vpn+orbit cluster and tray -- a border
-   rather than a fake separator module, kept subtle to match the bar's
-   otherwise muted styling. #tray's own padding-left (0 10px, from the shared
-   rule above) already keeps the line off the icon, so only margin-left is
-   needed here to pull it away from orbit on the other side. */
+/* Thin vertical divider between orbit and tray -- a border rather than a
+   fake separator module, kept subtle to match the bar's otherwise muted
+   styling. #tray's own padding-left (0 10px, from the shared rule above)
+   already keeps the line off the icon, so only margin-left is needed here
+   to pull it away from orbit on the other side. */
 #tray {
     border-left: 1px solid rgba(255, 255, 255, 0.2);
     margin-left: 6px;
