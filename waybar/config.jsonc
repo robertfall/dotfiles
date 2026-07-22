@@ -77,7 +77,7 @@
         "signal": 11
     },
     "custom/orbit": {
-        "exec": "orbit waybar-status",
+        "exec": "bash ~/.config/hypr/scripts/vpn-status.sh",
         "return-type": "json",
         "interval": 10,
         "on-click": "orbit toggle top-right"
