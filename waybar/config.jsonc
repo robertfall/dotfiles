@@ -80,7 +80,9 @@
         "exec": "bash ~/.config/hypr/scripts/vpn-status.sh",
         "return-type": "json",
         "interval": 10,
-        "on-click": "orbit toggle top-right"
+        // Absolute path on purpose: the graphical session gives waybar
+        // PATH=/usr/local/bin:/usr/bin, so a bare "orbit" exits 127.
+        "on-click": "~/.local/bin/orbit toggle top-right"
     },
     "tray": { "spacing": 10, "icon-size": 16 }
 }
