@@ -83,6 +83,11 @@ export PATH="$HOME/.duckdb/cli/latest:$PATH"
 export EDITOR=nvim
 export VISUAL=nvim
 
+# gpg pinentry needs the tty of *this* shell. Set it per-shell: a value
+# inherited from tmux or from an ssh login points at a tty that is long gone,
+# and pinentry then fails with "Inappropriate ioctl for device".
+[[ -n "$TTY" ]] && export GPG_TTY="$TTY"
+
 # OS-specific config
 [[ "$OSTYPE" == darwin* ]] && . ~/.zshrc.macos
 if [[ "$OSTYPE" == linux* ]]; then

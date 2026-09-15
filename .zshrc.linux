@@ -35,8 +35,9 @@ export DOCKER_HOST="unix://${XDG_RUNTIME_DIR:-/run/user/$(id -u)}/podman/podman.
 
 # Launch a new Ghostty window that skips the tmux auto-start. `-e` runs the
 # given command instead of a bare login shell; `env NO_TMUX=1` trips the bypass
-# gate in .zshrc so we land in plain zsh.
-alias ghostty-bare='ghostty -e env NO_TMUX=1 zsh -il'
+# gate in .zshrc so we land in plain zsh. `setsid -f` detaches the window from
+# this shell, so it survives the parent and never writes its log here.
+alias ghostty-bare='setsid -f ghostty -e env NO_TMUX=1 zsh -il >/dev/null 2>&1'
 
 # yazi: cd the actual shell to wherever you navigated to on quit (a subprocess
 # can't cd its parent otherwise) -- yazi's own documented wrapper pattern.
