@@ -1,0 +1,9 @@
+# The DualSense/DualShock 4 exposes its touchpad as a separate evdev node with
+# ID_INPUT_TOUCHPAD=1, so the compositor treats it as a second pointer. Resting
+# a thumb on the pad drags the cursor and clicking the pad sends BTN_LEFT, which
+# leaks into games. Hide that node from libinput.
+#
+# Only the touchpad node is hidden. The gamepad (js0/event19), motion sensors,
+# and hidraw nodes are untouched, so Steam Input and SDL still get the pad's
+# touch and click data through hidraw.
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{name}=="*Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
