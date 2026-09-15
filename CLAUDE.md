@@ -61,9 +61,12 @@ preview. The script detects the OS and links the right set:
   `xdg-desktop-portal/hyprland-portals.conf` -> matching path under
   `~/.config/xdg-desktop-portal/` (routes the Settings/appearance portal
   interface to xdg-desktop-portal-gtk instead of xdg-desktop-portal-gnome,
-  since there's no GNOME Shell to back the gnome portal backend). Without
-  this flag, those targets are left untouched even when Hyprland is
-  installed.
+  since there's no GNOME Shell to back the gnome portal backend), plus
+  `anydesk/anydesk.desktop` -> `~/.local/share/applications/` and
+  `anydesk/anydesk_global_tray.desktop` -> `~/.config/autostart/`
+  (same-filename overrides that add `GDK_BACKEND=x11`; AnyDesk breaks as a
+  native Wayland client). Without this flag, those targets are left
+  untouched even when Hyprland is installed.
 - `hypr/hyprland-managed.desktop`, `hypr/hyprland-plain-hidden.desktop`, and
   `hypr/hyprland-uwsm-managed-hidden.desktop` are tracked here as the source
   of truth but **not** symlinked by `install.sh` (it never uses sudo by

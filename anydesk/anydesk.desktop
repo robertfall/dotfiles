@@ -1,0 +1,16 @@
+[Desktop Entry]
+# Overrides /usr/share/applications/anydesk.desktop (same filename, higher
+# XDG priority). AnyDesk does not support Wayland: as a native Wayland GTK
+# client it still reads input and monitors through X11, so sessions break.
+# GDK_BACKEND=x11 runs it through XWayland instead.
+Type=Application
+Name=AnyDesk
+GenericName=AnyDesk
+X-GNOME-FullName=AnyDesk
+Exec=env GDK_BACKEND=x11 /usr/bin/anydesk %u
+Icon=anydesk
+Terminal=false
+TryExec=anydesk
+Categories=Network;GTK;
+MimeType=x-scheme-handler/anydesk;
+Name[de_DE]=AnyDesk

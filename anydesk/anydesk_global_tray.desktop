@@ -1,0 +1,11 @@
+[Desktop Entry]
+# Overrides /etc/xdg/autostart/anydesk_global_tray.desktop. Windows opened
+# from the tray icon inherit the tray's environment, so the tray needs
+# GDK_BACKEND=x11 too. See anydesk.desktop for why.
+Name=AnyDesk Tray
+GenericName=AnyDeskTray
+X-GNOME-FullName=AnyDesk
+Exec=env GDK_BACKEND=x11 /usr/bin/anydesk --tray
+Icon=anydesk
+Terminal=false
+Type=Application
