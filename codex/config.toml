@@ -1,7 +1,7 @@
 model = "gpt-5.6-sol"
-model_reasoning_effort = "max"
+model_reasoning_effort = "high"
 approvals_reviewer = "guardian_subagent"
-service_tier = "fast"
+service_tier = "default"
 
 [projects."/Users/robertherbst/projects/dotfiles"]
 trust_level = "trusted"
@@ -84,6 +84,12 @@ trust_level = "trusted"
 [projects."/private/tmp/red-preflight.Vr0PW2"]
 trust_level = "trusted"
 
+[projects."/home/robertherbst/projects/personal/binder"]
+trust_level = "trusted"
+
+[projects."/home/robertherbst/projects/freechurch/handbook"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 gpt-5-codex = "gpt-5.2-codex"
 "gpt-5.3-codex" = "gpt-5.4"
@@ -97,6 +103,7 @@ insert_newline = "shift-enter"
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
+gpt-6-astra = 1
 
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
