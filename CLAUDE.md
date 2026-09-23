@@ -57,7 +57,7 @@ preview. The script detects the OS and links the right set:
 - Linux/WSL: `.zshrc.linux`, `wezterm/wezterm.lua` ->
   `~/.config/wezterm/wezterm.lua`, plus `.zshrc.wsl` on WSL
 - Linux opt-in (`./install.sh --hyprland`): `hypr/`, `waybar/`, `mako/`,
-  `fuzzel/` -> their matching directories under `~/.config`, plus
+  `fuzzel/`, `swappy/` -> their matching directories under `~/.config`, plus
   `xdg-desktop-portal/hyprland-portals.conf` -> matching path under
   `~/.config/xdg-desktop-portal/` (routes the Settings/appearance portal
   interface to xdg-desktop-portal-gtk instead of xdg-desktop-portal-gnome,
@@ -95,9 +95,15 @@ preview. The script detects the OS and links the right set:
   Spec — none of the original package files are touched or deleted, so a
   package update can't disturb this, and any of it reverts instantly by
   deleting the corresponding mask file.
-  uwsm is required for this (installed here from the `solopasha/hyprland`
+  uwsm is required for this. It comes from the `hermitfeather/hyprland`
   COPR, restricted to `includepkgs=uwsm` so it can never touch the Hyprland
-  package itself, which comes from a different COPR).
+  package itself (that comes from the `ashbuk/Hyprland-Fedora` COPR). It was
+  originally from `solopasha/hyprland`, but that owner stopped Hyprland
+  packaging in 2025-10 and dropped the Fedora 44 chroot in 2026-09, so that
+  repo is disabled. hermitfeather was chosen in 2026-09 because it builds
+  from a public git repo, covers Fedora 43-45 and rawhide, and maintains
+  the whole Hyprland stack. Fedora's own package review for uwsm is
+  https://bugzilla.redhat.com/2426865 -- swap to it if it ever lands.
   **If login ever fails after this change:** switch to a TTY (Ctrl+Alt+F3),
   log in there, and either `sudo rm /usr/local/share/wayland-sessions/hyprland.desktop`
   to instantly bring back the plain entry, or run `Hyprland` directly from
