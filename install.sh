@@ -132,6 +132,7 @@ case "$OSTYPE" in
       link waybar            "$HOME/.config/waybar"
       link mako              "$HOME/.config/mako"
       link fuzzel            "$HOME/.config/fuzzel"
+      link swappy            "$HOME/.config/swappy"
       link xdg-desktop-portal/hyprland-portals.conf "$HOME/.config/xdg-desktop-portal/hyprland-portals.conf"
       link anydesk/anydesk.desktop "$HOME/.local/share/applications/anydesk.desktop"
       link anydesk/anydesk_global_tray.desktop "$HOME/.config/autostart/anydesk_global_tray.desktop"
