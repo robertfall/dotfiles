@@ -65,7 +65,9 @@ preview. The script detects the OS and links the right set:
   `anydesk/anydesk.desktop` -> `~/.local/share/applications/` and
   `anydesk/anydesk_global_tray.desktop` -> `~/.config/autostart/`
   (same-filename overrides that add `GDK_BACKEND=x11`; AnyDesk breaks as a
-  native Wayland client). Without this flag, those targets are left
+  native Wayland client), plus `hypr/keybinds.desktop` ->
+  `~/.local/share/applications/` (a "Keybindings" launcher entry that opens
+  the Super+? keybind help). Without this flag, those targets are left
   untouched even when Hyprland is installed.
 - `hypr/hyprland-managed.desktop`, `hypr/hyprland-plain-hidden.desktop`, and
   `hypr/hyprland-uwsm-managed-hidden.desktop` are tracked here as the source

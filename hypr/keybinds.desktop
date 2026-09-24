@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Keybindings
+Comment=Search and run Hyprland keybinds (same as Super+?)
+Keywords=keys;keybinds;shortcuts;hotkeys;help;
+Icon=preferences-desktop-keyboard-shortcuts
+# Hyprland's exec runs through sh, so ~ expands. Desktop Exec does not.
+Exec=hyprctl dispatch exec "bash ~/.config/hypr/scripts/keybinds.sh"
+Terminal=false
+Categories=Utility;

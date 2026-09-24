@@ -136,6 +136,7 @@ case "$OSTYPE" in
       link xdg-desktop-portal/hyprland-portals.conf "$HOME/.config/xdg-desktop-portal/hyprland-portals.conf"
       link anydesk/anydesk.desktop "$HOME/.local/share/applications/anydesk.desktop"
       link anydesk/anydesk_global_tray.desktop "$HOME/.config/autostart/anydesk_global_tray.desktop"
+      link hypr/keybinds.desktop "$HOME/.local/share/applications/keybinds.desktop"
     fi
     if is_wsl; then
       echo
