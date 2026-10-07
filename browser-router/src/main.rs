@@ -1,6 +1,7 @@
 //! browser-router: route clicked links to a Firefox profile.
 
 mod launch;
+mod picker;
 mod profiles;
 mod recent;
 mod rules;
@@ -24,6 +25,8 @@ struct Cli {
 enum Cmd {
     /// Open a URL in the matched profile (the desktop entry calls this)
     Open { url: String },
+    /// Fuzzel picker: assign a recent host to a profile (the Hyprland bind calls this)
+    Pick,
     /// Add or replace a rule. With no arguments, list rules.
     Rule {
         /// Profile name from profiles.ini
@@ -141,6 +144,7 @@ fn cmd_profiles() {
 fn run(cli: Cli) -> Result<(), String> {
     match cli.cmd {
         Cmd::Open { url } => cmd_open(&url),
+        Cmd::Pick => picker::run(),
         Cmd::Rule { profile: None, pattern: None } => {
             cmd_rules(false);
             Ok(())
