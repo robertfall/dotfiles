@@ -27,10 +27,40 @@ pub fn host_of(line: &str) -> &str {
     line.split_whitespace().next().unwrap_or("")
 }
 
+/// fuzzel flags. --only-match stops typed text from coming back as a
+/// pick. A fixed-width font and a wide window keep the profile column
+/// readable.
+fn fuzzel_args(prompt: &str) -> Vec<String> {
+    [
+        "--dmenu",
+        "--only-match",
+        "--prompt",
+        prompt,
+        "--lines",
+        "15",
+        "--width",
+        "72",
+        "--font",
+        "monospace:size=13",
+    ]
+    .iter()
+    .map(|a| a.to_string())
+    .collect()
+}
+
+/// Write `host -> profile` into `rules`, but only for a profile that exists.
+pub fn assign(rules: &mut Rules, host: &str, profile: &str, known: &[String]) -> Result<(), String> {
+    if !known.iter().any(|p| p == profile) {
+        return Err(format!("unknown profile {profile:?}"));
+    }
+    rules.set(host, profile);
+    Ok(())
+}
+
 /// Show `items` in fuzzel. The chosen line, or None on cancel or error.
 fn fuzzel(items: &[String], prompt: &str) -> Option<String> {
     let mut child = Command::new("fuzzel")
-        .args(["--dmenu", "--prompt", prompt, "--lines", "15"])
+        .args(fuzzel_args(prompt))
         .stdin(Stdio::piped())
         .stdout(Stdio::piped())
         .stderr(Stdio::null())
@@ -71,7 +101,7 @@ pub fn run() -> Result<(), String> {
     let Some(profile) = fuzzel(&profiles, &format!("{host} -> ")) else { return Ok(()) };
 
     let mut rules = rules;
-    rules.set(&host, &profile);
+    assign(&mut rules, &host, &profile, &profiles)?;
     crate::store::write_atomic(&crate::store::rules_path(), &rules.to_text())
         .map_err(|e| format!("cannot write rules: {e}"))
 }
@@ -90,6 +120,24 @@ mod tests {
         assert!(l[0].ends_with("Personal"));
         assert!(l[1].starts_with("app.ticketsolve.com "));
         assert!(l[1].ends_with("Ticketsolve"));
+    }
+
+    #[test]
+    fn fuzzel_args_only_accept_listed_entries_and_show_the_column() {
+        let args = fuzzel_args("host> ");
+        assert!(args.iter().any(|a| a == "--only-match"));
+        assert!(args.iter().any(|a| a == "--width"));
+        assert!(args.iter().any(|a| a.starts_with("monospace")));
+    }
+
+    #[test]
+    fn assign_rejects_unknown_profile_and_writes_known() {
+        let known = vec!["Personal".to_string(), "Work".to_string()];
+        let mut rules = Rules::parse("");
+        assert!(assign(&mut rules, "a.b", "Personl", &known).is_err());
+        assert!(rules.rules.is_empty());
+        assert!(assign(&mut rules, "a.b", "Work", &known).is_ok());
+        assert_eq!(rules.rules[0].profile, "Work");
     }
 
     #[test]

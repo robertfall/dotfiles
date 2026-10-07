@@ -130,6 +130,10 @@ cargo install --path browser-router --root ~/.local
 xdg-settings set default-web-browser browser-router.desktop
 ```
 
+The desktop entry must keep `x-scheme-handler/about` and
+`x-scheme-handler/unknown` in its `MimeType` line. Without them
+`xdg-settings` rewrites the file in place and replaces the symlink.
+
 Rules: `browser-router rule <profile> <host-or-prefix-or-url>`. Both
 arguments tab-complete. A host rule matches subdomains. A `host/path/`
 rule is a prefix. The longest match wins.

@@ -75,7 +75,7 @@ impl Rules {
             self.default = Some(profile.to_string());
             return;
         }
-        let pattern = pattern.to_ascii_lowercase();
+        let pattern = canonical(pattern);
         match self.rules.iter_mut().find(|r| r.pattern == pattern) {
             Some(r) => r.profile = profile.to_string(),
             None => self.rules.push(Rule { pattern, profile: profile.to_string() }),
@@ -87,10 +87,19 @@ impl Rules {
         if pattern == "*" {
             return self.default.take().is_some();
         }
-        let pattern = pattern.to_ascii_lowercase();
+        let pattern = canonical(pattern);
         let before = self.rules.len();
         self.rules.retain(|r| r.pattern != pattern);
         self.rules.len() != before
+    }
+}
+
+/// Lowercase the host half of a pattern. The path half keeps its case,
+/// because URL paths are case-sensitive and match as given.
+pub fn canonical(pattern: &str) -> String {
+    match pattern.split_once('/') {
+        None => pattern.to_ascii_lowercase(),
+        Some((h, p)) => format!("{}/{}", h.to_ascii_lowercase(), p),
     }
 }
 
@@ -174,6 +183,16 @@ mod tests {
         assert_eq!(r.rules.len(), 2);
         r.set("new.io", "Work");
         assert_eq!(r.rules[2].pattern, "new.io");
+    }
+
+    #[test]
+    fn set_lowercases_host_but_keeps_path_case() {
+        let mut r = rules("");
+        r.set("GitHub.com/TicketSolve/App", "Work");
+        assert_eq!(r.rules[0].pattern, "github.com/TicketSolve/App");
+        assert_eq!(r.profile_for(&t("github.com", "/TicketSolve/App/x")), "Work");
+        assert!(r.remove("GITHUB.com/TicketSolve/App"));
+        assert!(r.rules.is_empty());
     }
 
     #[test]

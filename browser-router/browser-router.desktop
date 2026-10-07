@@ -7,4 +7,4 @@ Exec=/home/robertherbst/.local/bin/browser-router open %u
 Terminal=false
 NoDisplay=true
 Categories=Network;WebBrowser;
-MimeType=x-scheme-handler/http;x-scheme-handler/https;text/html;application/xhtml+xml;
+MimeType=x-scheme-handler/http;x-scheme-handler/https;x-scheme-handler/about;x-scheme-handler/unknown;text/html;application/xhtml+xml;

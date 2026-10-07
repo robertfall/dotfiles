@@ -61,7 +61,7 @@ pub fn pattern_from(input: &str) -> String {
             return t.key();
         }
     }
-    input.to_ascii_lowercase()
+    rules::canonical(input)
 }
 
 fn load_rules() -> Rules {
@@ -187,5 +187,6 @@ mod tests {
         assert_eq!(pattern_from("GitHub.com"), "github.com");
         assert_eq!(pattern_from("github.com/ticketsolve/"), "github.com/ticketsolve/");
         assert_eq!(pattern_from("*"), "*");
+        assert_eq!(pattern_from("GitHub.com/TicketSolve/"), "github.com/TicketSolve/");
     }
 }
