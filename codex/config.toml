@@ -1,7 +1,6 @@
-model = "gpt-5.6-sol"
-model_reasoning_effort = "high"
+model = "gpt-6.1-sol"
+model_reasoning_effort = "ultra"
 approvals_reviewer = "guardian_subagent"
-service_tier = "default"
 
 [projects."/Users/robertherbst/projects/dotfiles"]
 trust_level = "trusted"
@@ -93,6 +92,15 @@ trust_level = "trusted"
 [projects."/home/robertherbst/projects/pss/pss-site"]
 trust_level = "trusted"
 
+[projects."/home/robertherbst/projects/ticketsolve/contracts"]
+trust_level = "trusted"
+
+[projects."/home/robertherbst/projects/personal/resonance"]
+trust_level = "trusted"
+
+[projects."/home/robertherbst/projects/personal/rwc2027-prediction-tracker"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 gpt-5-codex = "gpt-5.2-codex"
 "gpt-5.3-codex" = "gpt-5.4"
@@ -100,16 +108,40 @@ gpt-5-codex = "gpt-5.2-codex"
 [features]
 memories = true
 
+[tui]
+screen_reader_detection_done = true
+
 [tui.keymap.editor]
 insert_newline = "shift-enter"
 
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
-gpt-6-astra = 1
+gpt-6-astra = 2
+"gpt-6.1-sol" = 3
 
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
+
+[mcp_servers.node_repl]
+args = []
+command = "/usr/lib/chatgpt/resources/cua_node/bin/node_repl"
+startup_timeout_sec = 120
+
+[mcp_servers.node_repl.env]
+NODE_REPL_NATIVE_PIPE_CONNECT_TIMEOUT_MS = "1000"
+NODE_REPL_NODE_MODULE_DIRS = "/usr/lib/chatgpt/resources/cua_node/lib/node_modules"
+NODE_REPL_NODE_PATH = "/usr/lib/chatgpt/resources/cua_node/bin/node"
+NODE_REPL_TRUSTED_CODE_PATHS = "/home/robertherbst/.codex:/usr/lib/chatgpt/resources/cua_node/lib/node_modules"
+CODEX_HOME = "/home/robertherbst/.codex"
+BROWSER_USE_AVAILABLE_BACKENDS = "chrome,iab,mcpapps"
+BROWSER_USE_TINYSKY_ENABLED = "1"
+NODE_REPL_INSTRUCTIONS_USE_CASE_BROWSER = ""
+NODE_REPL_INSTRUCTIONS_USE_CASE_CHROME = ""
+BROWSER_USE_CODEX_APP_BUILD_FLAVOR = "prod"
+BROWSER_USE_CODEX_APP_VERSION = "26.928.31416"
+NODE_REPL_TRUSTED_SERVICES = '{"browser":"/home/robertherbst/.codex/plugins/cache/openai-bundled/browser/26.928.31416/scripts/browser-service.mjs"}'
+CODEX_CLI_PATH = "/usr/lib/chatgpt/resources/codex"
 
 [marketplaces.webwright]
 last_updated = "2026-07-28T07:28:04Z"
@@ -117,5 +149,49 @@ last_revision = "4a46f282ec37f27d6003cc498a977939d62d9015"
 source_type = "git"
 source = "https://github.com/microsoft/Webwright.git"
 
+[marketplaces.openai-bundled]
+source_type = "local"
+source = "/home/robertherbst/.codex/.tmp/bundled-marketplaces/openai-bundled"
+
+[marketplaces.openai-primary-runtime]
+source_type = "local"
+source = "/home/robertherbst/.cache/codex-runtimes/codex-primary-runtime/plugins/openai-primary-runtime"
+
 [plugins."webwright@webwright"]
 enabled = true
+
+[plugins."codex-app-tools@openai-bundled"]
+enabled = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
+
+[plugins."unified-computer-use@openai-bundled"]
+enabled = true
+
+[plugins."code-review@openai-bundled"]
+enabled = true
+
+[plugins."visualize@openai-bundled"]
+enabled = true
+
+[plugins."documents@openai-primary-runtime"]
+enabled = true
+
+[plugins."pdf@openai-primary-runtime"]
+enabled = true
+
+[plugins."spreadsheets@openai-primary-runtime"]
+enabled = true
+
+[plugins."presentations@openai-primary-runtime"]
+enabled = true
+
+[plugins."template-creator@openai-primary-runtime"]
+enabled = true
+
+[desktop]
+followUpQueueMode = "steer"
+conversationDetailMode = "STEPS_PROSE"
+ambient-suggestions-enabled = false
+keepRemoteControlAwakeWhilePluggedIn = true

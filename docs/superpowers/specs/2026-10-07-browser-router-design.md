@@ -169,7 +169,7 @@ xdg-settings set default-web-browser browser-router.desktop
 bindd = $mod SHIFT, B, Browser: assign recent links to a profile, exec, ~/.local/bin/browser-router pick
 ```
 
-The chord is a placeholder. Pick a free one when writing the plan.
+Super+Shift+B is free today. Super+Shift+Slash stays the help popup.
 
 ## Errors
 
