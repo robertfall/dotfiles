@@ -44,18 +44,21 @@ Modules:
 ```
 browser-router open <url>            match, record, launch  (desktop Exec)
 browser-router pick                  fuzzel picker          (Hyprland bind)
-browser-router rule <profile> <pat>  add or replace a rule
+browser-router rule <profile> <pat>  add or replace a rule; <pat> may be a full URL
 browser-router rule                  same as rules
-browser-router rules                 list rules
+browser-router rules [--patterns]    list rules
 browser-router unrule <pat>          remove a rule
-browser-router recent                list recent hosts with matched profile
-browser-router completions zsh       print zsh completion script
+browser-router recent [--hosts]      list recent hosts with matched profile
+browser-router profiles              list profile names from profiles.ini
 ```
 
-Completion: `<profile>` completes from `profiles.ini`. `<pat>` completes
-from the recent list. Clap generates the script. `install.sh` links the
-generated file into `~/.local/share/zsh/site-functions/_browser-router`,
-and `.zshrc` adds that directory to `fpath` before `compinit`.
+Completion: a hand-written zsh file `browser-router/_browser-router`.
+`<profile>` completes from `browser-router profiles`. `<pat>` completes
+from `browser-router recent --hosts`. `unrule` completes from
+`browser-router rules --patterns`. `install.sh` links the file into
+`~/.local/share/zsh/site-functions/_browser-router`, and `.zshrc` adds
+that directory to `fpath` before `compinit`. Clap's static generator
+cannot complete live values, so it is not used.
 
 ## Data
 
