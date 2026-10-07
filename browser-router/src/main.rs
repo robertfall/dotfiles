@@ -1,3 +1,4 @@
+mod launch;
 mod profiles;
 mod recent;
 mod rules;
