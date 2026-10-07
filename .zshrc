@@ -1,4 +1,6 @@
 # Basic
+# Completions for tools installed by hand (browser-router). Must come before compinit.
+fpath=("$HOME/.local/share/zsh/site-functions" $fpath)
 autoload -U compinit && compinit
 autoload -Uz vcs_info
 

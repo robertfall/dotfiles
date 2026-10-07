@@ -1,0 +1,45 @@
+#compdef browser-router
+# Profiles, hosts and patterns come from the binary so they are always live.
+
+_browser_router() {
+  local -a cmds
+  cmds=(
+    'open:open a URL in the matched profile'
+    'pick:fuzzel picker to assign a recent host'
+    'rule:add or replace a rule (profile first, pattern last)'
+    'rules:list rules'
+    'unrule:remove a rule'
+    'recent:list recent hosts with matched profile'
+    'profiles:list Firefox profile names'
+  )
+
+  local state
+  _arguments -C '1:command:->cmd' '*::arg:->args'
+
+  case $state in
+    cmd)
+      _describe 'command' cmds
+      ;;
+    args)
+      case $words[1] in
+        rule)
+          case $CURRENT in
+            2) compadd -- ${(f)"$(browser-router profiles 2>/dev/null)"} ;;
+            3) compadd -- ${(f)"$(browser-router recent --hosts 2>/dev/null)"} ;;
+          esac
+          ;;
+        unrule)
+          compadd -- ${(f)"$(browser-router rules --patterns 2>/dev/null)"}
+          ;;
+        rules)
+          compadd -- --patterns
+          ;;
+        recent)
+          compadd -- --hosts
+          ;;
+      esac
+      ;;
+  esac
+}
+
+_browser_router "$@"

@@ -14,6 +14,7 @@ Cross-platform dotfiles for macOS and WSL (Windows Subsystem for Linux).
 .gitconfig           # Git configuration
 nvim/                # Neovim configuration (Lua-based, uses lazy.nvim)
 wezterm/             # Wezterm terminal configuration
+browser-router/      # Rust CLI: routes links to Firefox profiles (see below)
 ```
 
 ## Platform Detection
@@ -110,6 +111,28 @@ preview. The script detects the OS and links the right set:
   log in there, and either `sudo rm /usr/local/share/wayland-sessions/hyprland.desktop`
   to instantly bring back the plain entry, or run `Hyprland` directly from
   the TTY for a bare session.
+
+## browser-router
+
+Firefox opens every clicked link in the default profile. `browser-router/`
+is a small Rust CLI that becomes the default browser instead, matches the
+URL against `~/.local/share/browser-router/rules`, and starts
+`firefox -P <profile> <url>` detached. It records each host it opened.
+Super+Shift+B opens a fuzzel picker that lists those hosts with the
+profile they match right now and lets you assign one. The design is in
+`docs/superpowers/specs/2026-10-07-browser-router-design.md`.
+
+`install.sh` links the desktop entry and the zsh completion. Two steps
+are manual:
+
+```
+cargo install --path browser-router --root ~/.local
+xdg-settings set default-web-browser browser-router.desktop
+```
+
+Rules: `browser-router rule <profile> <host-or-prefix-or-url>`. Both
+arguments tab-complete. A host rule matches subdomains. A `host/path/`
+rule is a prefix. The longest match wins.
 
 ## Notes
 

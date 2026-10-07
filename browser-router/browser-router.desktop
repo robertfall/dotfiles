@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Browser Router
+Comment=Open links in the Firefox profile the rules say
+# Absolute path: the session PATH lacks ~/.local/bin. Desktop Exec does not expand ~.
+Exec=/home/robertherbst/.local/bin/browser-router open %u
+Terminal=false
+NoDisplay=true
+Categories=Network;WebBrowser;
+MimeType=x-scheme-handler/http;x-scheme-handler/https;text/html;application/xhtml+xml;

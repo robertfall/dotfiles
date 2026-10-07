@@ -125,6 +125,8 @@ case "$OSTYPE" in
     echo "Linux:"
     link .zshrc.linux      "$HOME/.zshrc.linux"
     link wezterm/wezterm.lua "$HOME/.config/wezterm/wezterm.lua"
+    link browser-router/browser-router.desktop "$HOME/.local/share/applications/browser-router.desktop"
+    link browser-router/_browser-router        "$HOME/.local/share/zsh/site-functions/_browser-router"
     if [ "$INSTALL_HYPRLAND" -eq 1 ]; then
       echo
       echo "Hyprland (opted in):"
