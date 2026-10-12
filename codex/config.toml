@@ -1,6 +1,7 @@
 model = "gpt-6.1-sol"
 model_reasoning_effort = "ultra"
 approvals_reviewer = "guardian_subagent"
+service_tier = "default"
 
 [projects."/Users/robertherbst/projects/dotfiles"]
 trust_level = "trusted"
@@ -101,11 +102,18 @@ trust_level = "trusted"
 [projects."/home/robertherbst/projects/personal/rwc2027-prediction-tracker"]
 trust_level = "trusted"
 
+[projects."/home/robertherbst/projects/ticketsolve"]
+trust_level = "trusted"
+
+[projects."/home/robertherbst/projects/thatsliderguy"]
+trust_level = "trusted"
+
 [notice.model_migrations]
 gpt-5-codex = "gpt-5.2-codex"
 "gpt-5.3-codex" = "gpt-5.4"
 
 [features]
+hooks = true
 memories = true
 
 [tui]
@@ -118,7 +126,7 @@ insert_newline = "shift-enter"
 "gpt-5.5" = 4
 "gpt-5.6-sol" = 4
 gpt-6-astra = 2
-"gpt-6.1-sol" = 3
+"gpt-6.1-sol" = 4
 
 [mcp_servers.openaiDeveloperDocs]
 url = "https://developers.openai.com/mcp"
@@ -195,3 +203,6 @@ followUpQueueMode = "steer"
 conversationDetailMode = "STEPS_PROSE"
 ambient-suggestions-enabled = false
 keepRemoteControlAwakeWhilePluggedIn = true
+
+[hooks.state."/home/robertherbst/.codex/hooks.json:session_start:0:0"]
+trusted_hash = "sha256:f80683ce30ed733b288a4855784919f4f9372da010c285dff5114ed0c4ca97e7"
